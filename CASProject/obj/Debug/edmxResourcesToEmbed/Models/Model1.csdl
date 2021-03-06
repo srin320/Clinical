@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CASDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="RoleDetail">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DoctorDetails" Relationship="CASDatabaseModel.FK_DoctorDetails_RoleDetails" FromRole="RoleDetail" ToRole="DoctorDetail" />
+    <NavigationProperty Name="PatientDetails" Relationship="CASDatabaseModel.FK_PatientDetails_RoleDetails" FromRole="RoleDetail" ToRole="PatientDetail" />
+    <NavigationProperty Name="AdminDetails" Relationship="CASDatabaseModel.FK_AdminDetails_RoleDetails" FromRole="RoleDetail" ToRole="AdminDetail" />
+    <NavigationProperty Name="LoginDetails" Relationship="CASDatabaseModel.FK_LoginDetails_RoleDetails" FromRole="RoleDetail" ToRole="LoginDetail" />
+    <NavigationProperty Name="SalesmanDetails" Relationship="CASDatabaseModel.FK_SalesmanDetails_RoleDetails" FromRole="RoleDetail" ToRole="SalesmanDetail" />
+    <NavigationProperty Name="SupplierDetails" Relationship="CASDatabaseModel.FK_SupplierDetails_RoleDetails" FromRole="RoleDetail" ToRole="SupplierDetail" />
+  </EntityType>
+  <EntityContainer Name="CASDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="RoleDetails" EntityType="Self.RoleDetail" />
+    <EntitySet Name="DoctorDetails" EntityType="CASDatabaseModel.DoctorDetail" />
+    <EntitySet Name="PatientDetails" EntityType="CASDatabaseModel.PatientDetail" />
+    <EntitySet Name="SpecialityDetails" EntityType="CASDatabaseModel.SpecialityDetail" />
+    <AssociationSet Name="FK_DoctorDetails_RoleDetails" Association="CASDatabaseModel.FK_DoctorDetails_RoleDetails">
+      <End Role="RoleDetail" EntitySet="RoleDetails" />
+      <End Role="DoctorDetail" EntitySet="DoctorDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoctorDetails_SpecialityDetails" Association="CASDatabaseModel.FK_DoctorDetails_SpecialityDetails">
+      <End Role="SpecialityDetail" EntitySet="SpecialityDetails" />
+      <End Role="DoctorDetail" EntitySet="DoctorDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientDetails_RoleDetails" Association="CASDatabaseModel.FK_PatientDetails_RoleDetails">
+      <End Role="RoleDetail" EntitySet="RoleDetails" />
+      <End Role="PatientDetail" EntitySet="PatientDetails" />
+    </AssociationSet>
+    <EntitySet Name="AdminDetails" EntityType="CASDatabaseModel.AdminDetail" />
+    <AssociationSet Name="FK_AdminDetails_RoleDetails" Association="CASDatabaseModel.FK_AdminDetails_RoleDetails">
+      <End Role="RoleDetail" EntitySet="RoleDetails" />
+      <End Role="AdminDetail" EntitySet="AdminDetails" />
+    </AssociationSet>
+    <EntitySet Name="LoginDetails" EntityType="CASDatabaseModel.LoginDetail" />
+    <AssociationSet Name="FK_LoginDetails_RoleDetails" Association="CASDatabaseModel.FK_LoginDetails_RoleDetails">
+      <End Role="RoleDetail" EntitySet="RoleDetails" />
+      <End Role="LoginDetail" EntitySet="LoginDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientDetails_LoginDetails" Association="CASDatabaseModel.FK_PatientDetails_LoginDetails">
+      <End Role="LoginDetail" EntitySet="LoginDetails" />
+      <End Role="PatientDetail" EntitySet="PatientDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoctorDetails_LoginDetails" Association="CASDatabaseModel.FK_DoctorDetails_LoginDetails">
+      <End Role="LoginDetail" EntitySet="LoginDetails" />
+      <End Role="DoctorDetail" EntitySet="DoctorDetails" />
+    </AssociationSet>
+    <EntitySet Name="SalesmanDetails" EntityType="CASDatabaseModel.SalesmanDetail" />
+    <EntitySet Name="SupplierDetails" EntityType="CASDatabaseModel.SupplierDetail" />
+    <AssociationSet Name="FK_SalesmanDetails_LoginDetails" Association="CASDatabaseModel.FK_SalesmanDetails_LoginDetails">
+      <End Role="LoginDetail" EntitySet="LoginDetails" />
+      <End Role="SalesmanDetail" EntitySet="SalesmanDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierDetails_LoginDetails" Association="CASDatabaseModel.FK_SupplierDetails_LoginDetails">
+      <End Role="LoginDetail" EntitySet="LoginDetails" />
+      <End Role="SupplierDetail" EntitySet="SupplierDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesmanDetails_RoleDetails" Association="CASDatabaseModel.FK_SalesmanDetails_RoleDetails">
+      <End Role="RoleDetail" EntitySet="RoleDetails" />
+      <End Role="SalesmanDetail" EntitySet="SalesmanDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierDetails_RoleDetails" Association="CASDatabaseModel.FK_SupplierDetails_RoleDetails">
+      <End Role="RoleDetail" EntitySet="RoleDetails" />
+      <End Role="SupplierDetail" EntitySet="SupplierDetails" />
+    </AssociationSet>
+    <EntitySet Name="DrugDetails" EntityType="CASDatabaseModel.DrugDetail" />
+    <EntitySet Name="CartDetails" EntityType="CASDatabaseModel.CartDetail" />
+    <EntitySet Name="OrderDetails" EntityType="CASDatabaseModel.OrderDetail" />
+    <FunctionImport Name="deleteEntriesFromCart" />
+    <FunctionImport Name="DeleteEntriesFromCart1" />
+    <EntitySet Name="MessageDetails" EntityType="CASDatabaseModel.MessageDetail" />
+  </EntityContainer>
+  <EntityType Name="DoctorDetail">
+    <Key>
+      <PropertyRef Name="DoctorId" />
+    </Key>
+    <Property Name="DoctorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DoctorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Experience" Type="Decimal" Precision="2" Scale="1" />
+    <Property Name="SpecialityId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="RoleDetail" Relationship="CASDatabaseModel.FK_DoctorDetails_RoleDetails" FromRole="DoctorDetail" ToRole="RoleDetail" />
+    <NavigationProperty Name="SpecialityDetail" Relationship="CASDatabaseModel.FK_DoctorDetails_SpecialityDetails" FromRole="DoctorDetail" ToRole="SpecialityDetail" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LoginDetail" Relationship="CASDatabaseModel.FK_DoctorDetails_LoginDetails" FromRole="DoctorDetail" ToRole="LoginDetail" />
+  </EntityType>
+  <EntityType Name="PatientDetail">
+    <Key>
+      <PropertyRef Name="PatientId" />
+    </Key>
+    <Property Name="PatientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProblemDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MedicalRecords" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="RoleDetail" Relationship="CASDatabaseModel.FK_PatientDetails_RoleDetails" FromRole="PatientDetail" ToRole="RoleDetail" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LoginDetail" Relationship="CASDatabaseModel.FK_PatientDetails_LoginDetails" FromRole="PatientDetail" ToRole="LoginDetail" />
+  </EntityType>
+  <EntityType Name="SpecialityDetail">
+    <Key>
+      <PropertyRef Name="SpecialityId" />
+    </Key>
+    <Property Name="SpecialityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SpecialityName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DoctorDetails" Relationship="CASDatabaseModel.FK_DoctorDetails_SpecialityDetails" FromRole="SpecialityDetail" ToRole="DoctorDetail" />
+  </EntityType>
+  <Association Name="FK_DoctorDetails_RoleDetails">
+    <End Type="CASDatabaseModel.RoleDetail" Role="RoleDetail" Multiplicity="1" />
+    <End Type="CASDatabaseModel.DoctorDetail" Role="DoctorDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleDetail">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="DoctorDetail">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoctorDetails_SpecialityDetails">
+    <End Type="CASDatabaseModel.SpecialityDetail" Role="SpecialityDetail" Multiplicity="1" />
+    <End Type="CASDatabaseModel.DoctorDetail" Role="DoctorDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpecialityDetail">
+        <PropertyRef Name="SpecialityId" />
+      </Principal>
+      <Dependent Role="DoctorDetail">
+        <PropertyRef Name="SpecialityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientDetails_RoleDetails">
+    <End Type="CASDatabaseModel.RoleDetail" Role="RoleDetail" Multiplicity="1" />
+    <End Type="CASDatabaseModel.PatientDetail" Role="PatientDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleDetail">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="PatientDetail">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AdminDetail">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="RoleDetail" Relationship="CASDatabaseModel.FK_AdminDetails_RoleDetails" FromRole="AdminDetail" ToRole="RoleDetail" />
+  </EntityType>
+  <Association Name="FK_AdminDetails_RoleDetails">
+    <End Type="CASDatabaseModel.RoleDetail" Role="RoleDetail" Multiplicity="1" />
+    <End Type="CASDatabaseModel.AdminDetail" Role="AdminDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleDetail">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="AdminDetail">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="LoginDetail">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmailId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="RoleDetail" Relationship="CASDatabaseModel.FK_LoginDetails_RoleDetails" FromRole="LoginDetail" ToRole="RoleDetail" />
+    <NavigationProperty Name="PatientDetails" Relationship="CASDatabaseModel.FK_PatientDetails_LoginDetails" FromRole="LoginDetail" ToRole="PatientDetail" />
+    <NavigationProperty Name="DoctorDetails" Relationship="CASDatabaseModel.FK_DoctorDetails_LoginDetails" FromRole="LoginDetail" ToRole="DoctorDetail" />
+    <NavigationProperty Name="SalesmanDetails" Relationship="CASDatabaseModel.FK_SalesmanDetails_LoginDetails" FromRole="LoginDetail" ToRole="SalesmanDetail" />
+    <NavigationProperty Name="SupplierDetails" Relationship="CASDatabaseModel.FK_SupplierDetails_LoginDetails" FromRole="LoginDetail" ToRole="SupplierDetail" />
+  </EntityType>
+  <Association Name="FK_LoginDetails_RoleDetails">
+    <End Type="CASDatabaseModel.RoleDetail" Role="RoleDetail" Multiplicity="1" />
+    <End Type="CASDatabaseModel.LoginDetail" Role="LoginDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleDetail">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="LoginDetail">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientDetails_LoginDetails">
+    <End Type="CASDatabaseModel.LoginDetail" Role="LoginDetail" Multiplicity="1" />
+    <End Type="CASDatabaseModel.PatientDetail" Role="PatientDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoginDetail">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="PatientDetail">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoctorDetails_LoginDetails">
+    <End Type="CASDatabaseModel.LoginDetail" Role="LoginDetail" Multiplicity="1" />
+    <End Type="CASDatabaseModel.DoctorDetail" Role="DoctorDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoginDetail">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="DoctorDetail">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SalesmanDetail">
+    <Key>
+      <PropertyRef Name="SalesmanId" />
+    </Key>
+    <Property Name="SalesmanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesmanName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="SalesmanAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LoginDetail" Relationship="CASDatabaseModel.FK_SalesmanDetails_LoginDetails" FromRole="SalesmanDetail" ToRole="LoginDetail" />
+    <NavigationProperty Name="RoleDetail" Relationship="CASDatabaseModel.FK_SalesmanDetails_RoleDetails" FromRole="SalesmanDetail" ToRole="RoleDetail" />
+  </EntityType>
+  <EntityType Name="SupplierDetail">
+    <Key>
+      <PropertyRef Name="SupplierId" />
+    </Key>
+    <Property Name="SupplierId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="SupplierAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LoginDetail" Relationship="CASDatabaseModel.FK_SupplierDetails_LoginDetails" FromRole="SupplierDetail" ToRole="LoginDetail" />
+    <NavigationProperty Name="RoleDetail" Relationship="CASDatabaseModel.FK_SupplierDetails_RoleDetails" FromRole="SupplierDetail" ToRole="RoleDetail" />
+  </EntityType>
+  <Association Name="FK_SalesmanDetails_LoginDetails">
+    <End Type="CASDatabaseModel.LoginDetail" Role="LoginDetail" Multiplicity="1" />
+    <End Type="CASDatabaseModel.SalesmanDetail" Role="SalesmanDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoginDetail">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="SalesmanDetail">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplierDetails_LoginDetails">
+    <End Type="CASDatabaseModel.LoginDetail" Role="LoginDetail" Multiplicity="1" />
+    <End Type="CASDatabaseModel.SupplierDetail" Role="SupplierDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoginDetail">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="SupplierDetail">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesmanDetails_RoleDetails">
+    <End Type="CASDatabaseModel.RoleDetail" Role="RoleDetail" Multiplicity="1" />
+    <End Type="CASDatabaseModel.SalesmanDetail" Role="SalesmanDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleDetail">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="SalesmanDetail">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplierDetails_RoleDetails">
+    <End Type="CASDatabaseModel.RoleDetail" Role="RoleDetail" Multiplicity="1" />
+    <End Type="CASDatabaseModel.SupplierDetail" Role="SupplierDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleDetail">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="SupplierDetail">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DrugDetail">
+    <Key>
+      <PropertyRef Name="DrugId" />
+    </Key>
+    <Property Name="DrugId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DrugName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DescriptionOfDrug" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+    <Property Name="ManufacturedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UnitCount" Type="Int32" />
+    <Property Name="PackSize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Caution" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+    <Property Name="DrugImage" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="DrugCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CartDetail">
+    <Key>
+      <PropertyRef Name="CartId" />
+    </Key>
+    <Property Name="CartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DrugId" Type="Int32" />
+    <Property Name="DrugName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PackSize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DrugCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="DrugPrice" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="UnitCount" Type="Int32" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="OrderFrom" Type="Int32" />
+    <Property Name="QuantityOrdered" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="isApproved" Type="Boolean" />
+    <Property Name="OrderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MessageDetail">
+    <Key>
+      <PropertyRef Name="MessageId" />
+    </Key>
+    <Property Name="MessageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SenderId" Type="Int32" Nullable="false" />
+    <Property Name="ReceiverId" Type="Int32" Nullable="false" />
+    <Property Name="MessageText" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+</Schema>

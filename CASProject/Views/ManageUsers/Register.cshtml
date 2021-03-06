@@ -1,0 +1,252 @@
+﻿@model  CASProject.ViewModel.UserViewModel
+
+
+@{
+    ViewBag.Title = "Register";
+}
+
+
+
+<script type="text/javascript">
+
+    function ShowDoc() {
+        
+     
+   admOptionValue = document.getElementById("getFname").value;
+    
+
+    if (admOptionValue == 1) {
+        document.getElementById("hidden_div").style.display = "";
+    }
+        else
+        document.getElementById("hidden_div").style.display = "none";
+
+
+}  
+    </script>
+
+
+
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title row row-space">Registration Form</h2>
+
+                    <form method="POST" action="/manageusers/register">
+
+                        <div style="margin-bottom:20px" class="row">
+                            <label style="margin-right:17px;margin-top:10px;text-transform:none" class="label">I am a</label>
+
+                            <div class="rs-select2 js-select-simple select--no-search m-md-2">
+                               
+
+                                  @Html.DropDownListFor(x => x.RoleId,
+                                   new SelectList(Model.Roles, "Id", "Name"),
+                                   "Choose an option",
+
+                                   new {
+                                       @id = "getFname",
+                                       @class = "rs - select2 js - select - simple select--no - search m - md - 2",
+                                       
+                                       @onchange = "ShowDoc()" }) 
+                                <div class="select-dropdown"></div>
+
+
+
+
+                            </div>
+                        </div>
+
+                        
+
+
+                        <div id="hidden_div" style="display:none;">
+                            <div style="margin-bottom:20px" class="row">
+                                <label style="margin-right:17px;margin-top:10px;text-transform:none" class="label">And I am a</label>
+                                <div class="rs-select2 js-select-simple select--no-search m-md-2">
+                                @Html.DropDownList("Departments", new List<SelectListItem>
+                                 {
+                               new SelectListItem { Text = "Cardiologist", Value = "Cardiologist", Selected=true},
+                               new SelectListItem { Text = "ENT Specialist", Value = "ENT Specialist"},
+                               new SelectListItem { Text = "Radiologist", Value = "Radiologist"},
+                               new SelectListItem { Text = "Dentist", Value = "Dentist"},
+                               new SelectListItem { Text = "Neurologist", Value = "Neurologist"},
+                               new SelectListItem { Text = "Gynaecologist", Value = "Gynaecologist"}
+                                }, 
+                                "Select Department")
+                                  
+                                    
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+
+                            <div class="row row-space">
+                                <div class="input-group">
+
+
+                                    <label class="label">Registration Number</label>
+                                    @Html.TextBoxFor(x => x.RegNo, new { @class = "input--style-4", maxlength = "50" })
+                                    @Html.ValidationMessageFor(x => x.RegNo, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+
+                            <div class="row row-space">
+                                <div class="input-group">
+                                    <label class="label">Qualification</label>
+                                    @Html.TextBoxFor(x => x.Qualification, new { @class = "input--style-4", maxlength = "50" })
+                                    @Html.ValidationMessageFor(x => x.Qualification, "", new { @class = "text-danger" })
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+
+                        <div style="margin-bottom:unset" class="row row-space">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="input-group">
+                                        <label class="label">Full Name</label>
+                                        @*<input class="input--style-4" type="text" id="txtname" name="Name">*@ 
+                                        @*@Html.LabelFor(x => x.Name)*@
+                                        @Html.TextBoxFor(x => x.Name, new { @class = "input--style-4", maxlength = "50" })
+                                        @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="input-group m-r-45">
+                                        <div class="input-group">
+                                            <label class="label">User Name</label>
+                                            @* <input class="input--style-4" type="text" id="txtusername" name="Name">*@
+
+                                            @*@Html.LabelFor(x => x.Username)*@
+                                            @Html.TextBoxFor(x => x.Username, new { @class = "input--style-4", type = "text" })
+                                            @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row row-space">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="input-group">
+                                        <label class="label">Date Of Birth</label>
+                                        <div class="input-group-icon">
+                                           @*<input class="input--style-4 js-datepicker" type="text" id="txtdob">
+                                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>*@ 
+                                           
+                                            @Html.TextBoxFor(x => x.DOB, new { @class = "input--style-4 ", type = "date" })
+                                            @Html.ValidationMessageFor(x => x.DOB )
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm">
+                                    <div class="input-group m-r-45">
+                                        <label class="label">Gender</label>
+                                        <div style="padding-top:10px" class="input-group">
+
+
+                                            <label class="radio-container m-r-45">
+                                                Male
+                                                @Html.RadioButtonFor(x => x.Gender, "M", new { @checked = "checked" })
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="radio-container">
+                                                Female
+                                                @Html.RadioButtonFor(x => x.Gender, "F")
+                                                <span class="checkmark"></span>
+                                            </label>
+                                             
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div style="margin-bottom:unset" class="row row-space">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="input-group">
+                                        <label class="label">Email</label>
+                                        @*<input class="input--style-4" type="email" id="txtemailid">*@ 
+
+                                        @*@Html.LabelFor(x => x.Email)*@ 
+                                        @Html.TextBoxFor(x => x.Email, new { @class = "input--style-4", type = "email", maxlength = "50" })
+                                        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="input-group m-r-45">
+                                        <div class="input-group">
+                                            <label class="label">Phone Number</label>
+                                            @*<input class="input--style-4" type="number" id="txtphone">*@ 
+
+                                            @*@Html.LabelFor(x => x.Phone)*@
+                                            @Html.TextBoxFor(x => x.Phone, new { @class = "input--style-4", type = "number", maxlength = "10" })
+                                            @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="row row-space">
+                            <div class="input-group">
+                               <label class="label">Address</label>
+                                @*<input class="input--style-4" type="text" id="txtaddress">*@ 
+
+                                @*@Html.LabelFor(x => x.Address)*@
+                                @Html.TextBoxFor(x => x.Address, new { @class = "input--style-4", maxlength = "50" })
+                                @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="row row-space">
+                            <div class="input-group">
+                                <label class="label">Password</label>
+                                @*<input class="input--style-4" type="password" id="txtpassword">*@ 
+
+                                @*@Html.LabelFor(x => x.Password)*@
+                                @Html.TextBoxFor(x => x.Password, new { @class = "input--style-4", type="password" ,maxlength = "20" })
+                                @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <div class="row row-space">
+                            <div></div>
+                            <div class="p-t-15">
+                                <button class="btn btn--radius-2 btn--green" type="submit" value="submit" id="btnsave">Save</button>
+                            </div>
+                            <div></div>
+                        </div>
+                    </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+       

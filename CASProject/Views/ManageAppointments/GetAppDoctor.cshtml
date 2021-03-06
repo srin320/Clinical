@@ -1,0 +1,41 @@
+﻿@*@model CASProject.ViewModel.AppointmentViewModel*@
+
+@using ClinicalDAL.EF;
+@using System.Collections.Generic;
+
+@model List<Appointment>
+
+@{
+    ViewBag.Title = "GetAppDoctor";
+}
+
+<div class="jumbotron" style="text-align:center">
+    <h2 class="font-weight-bold">My Appointments</h2>
+</div>
+
+<div class="row col-md-12 mt-2">
+    <table class="table table-bordered table-hover">
+        <tr>
+            @*<th>Patient id</th>*@
+            <th>Patient Name</th>
+            <th>Date</th>
+            @*<th>Option</th>*@
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.User.Name
+                </td>
+                @*<td>
+                        @item.User1.Name
+                    </td>*@
+                <td>
+                    @item.Date.ToShortDateString()
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

@@ -1,0 +1,543 @@
+﻿@using ClinicalDAL.EF;
+@using CASProject.Controllers;
+@using System.Collections.Generic;
+@using CASProject.ViewModel;
+
+@model dynamic
+
+@{
+    ViewBag.Title = "Doctor";
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+<script type="text/javascript">
+
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+
+    function redirectOnClick(pid, did) {
+        document.location = '/managemessages/sendmsgdoctor?pid=' + pid + '&did=' + did;
+    }
+</script>
+
+<style>
+    body {
+    }
+
+    .emp-profile {
+        padding: 3%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        border-radius: 0.5rem;
+        background: #fff;
+    }
+
+    .profile-img {
+        text-align: center;
+    }
+
+        .profile-img img {
+            width: 70%;
+            height: 100%;
+        }
+
+        .profile-img .file {
+            position: relative;
+            overflow: hidden;
+            margin-top: -20%;
+            width: 70%;
+            border: none;
+            border-radius: 0;
+            font-size: 15px;
+            background: #212529b8;
+        }
+
+            .profile-img .file input {
+                position: absolute;
+                opacity: 0;
+                right: 0;
+                top: 0;
+            }
+
+    .profile-head h5 {
+        color: #333;
+    }
+
+    .profile-head h6 {
+        color: #0062cc;
+    }
+
+    .profile-edit-btn {
+        border: none;
+        border-radius: 1.5rem;
+        width: 70%;
+        padding: 2%;
+        font-weight: 600;
+        color: #6c757d;
+        cursor: pointer;
+    }
+
+    .proile-rating {
+        font-size: 12px;
+        color: #818182;
+        margin-top: 5%;
+    }
+
+        .proile-rating span {
+            color: #495057;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+    .profile-head .nav-tabs {
+        margin-bottom: 5%;
+    }
+
+        .profile-head .nav-tabs .nav-link {
+            font-weight: 600;
+            border: none;
+        }
+
+            .profile-head .nav-tabs .nav-link.active {
+                border: none;
+                border-bottom: 2px solid #0062cc;
+            }
+
+    .profile-work {
+        padding: 14%;
+        margin-top: -15%;
+    }
+
+        .profile-work p {
+            font-size: 12px;
+            color: #818182;
+            font-weight: 600;
+            margin-top: 10%;
+        }
+
+        .profile-work a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .profile-work ul {
+            list-style: none;
+        }
+
+    .profile-tab label {
+        font-weight: 600;
+    }
+
+    .profile-tab p {
+        font-weight: 600;
+        color: #0062cc;
+    }
+</style>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/Profiles/Doctor">
+
+                    @foreach (var item in Model.Doctor)
+                    {
+                        <div class="form-group">
+                            <label for="txtoldpwd" class="col-form-label"> Username</label>
+                            <input type="text" class="form-control" id="txtuname" name="txtuname" value=@item.Username readonly />
+
+                        </div>
+                        <div class="form-group">
+                            <label for="txtnewpwd" class="col-form-label">Date Of Birth</label>
+                            <input type="text" class="form-control" id="txtdob" value=@item.DOB readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtoldpwd" class="col-form-label">Phone</label>
+                            <input type="text" class="form-control" id="txtphone" name="txtphone" value=@item.Phone>
+                        </div>
+
+                        <div class="form-group">
+                            @foreach (var q in item.Doctors)
+                            {
+
+                                <label for="txtoldpwd" class="col-form-label">Qualification</label>
+                                <input type="text" class="form-control" id="txtqual" name="txtqual" value=@q.Qualification />
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="txtoldpwd" class="col-form-label">Address</label>
+                            <input type="text" class="form-control" id="txtadd" name="txtadd" value=@item.Address>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtoldpwd" class="col-form-label">  Password</label>
+                            <input type="password" class="form-control" id="txtpwd" name="txtpwd" value=@item.Password>
+                        </div>
+                    }
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn--radius-2 btn--green" type="submit" value="save">Update</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+            <div class="col-md-9 ftco-animate pb-5">
+                <p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>Profile <i class="fa fa-chevron-right"></i></span></p>
+                <h1 class="mb-0 bread">My Profile</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section ftco-no-pt ftco-no-pb">
+    <div class="container">
+        <div class="row d-flex no-gutters">
+            <div class="col-md-6 d-flex order-md-last">
+                <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center mb-4 mb-sm-0" style="background-image:url()">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container emp-profile">
+    <form method="post">
+
+
+        @foreach (var item in Model.Doctor)
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+
+                        <h5>
+                            @foreach (var doc in item.Doctors)
+                            {
+                                @doc.DeptName;
+                            }
+                        </h5>
+
+                        <h6>
+                        </h6>
+                        <p class="proile-rating">RATING : <span>8/10</span></p>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#medicine" role="tab" aria-controls="profile" aria-selected="false">View Medicines</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#appointment" role="tab" aria-controls="profile" aria-selected="false">View Appointments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#inbox" role="tab" aria-controls="profile" aria-selected="false">Inbox</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit Profile</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>User Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+
+                                        @item.Username
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>@item.Name</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        @item.Email
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Phone</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>@item.Phone</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Date Of Birth</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>@item.DOB.ToShortDateString() </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Registration Number</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        @foreach (var doc in item.Doctors)
+                                        {
+                                            @doc.RegNo;
+                                        }
+                                    <p>
+                                </div>
+                            </div>
+                            <!--<div class="row">
+        <div class="col-md-6">
+            <label>Experience</label>
+        </div>
+        <div class="col-md-6">-->
+                            @*<p>@doc.Experience</p>*@
+                            <!--</div>
+        </div>-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Qualification</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        @foreach (var doc in item.Doctors)
+                                        {
+                                            @doc.Qualification;
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Address</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>@item.Address</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form method="POST" action="/Profiles/Doctor">
+                            <div class="tab-pane fade" id="medicine" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="input-group">
+                                    <input type="search" class="form-control rounded" placeholder="Search Medicine" aria-label="Search"
+                                           aria-describedby="search-addon" name="searchname" id="myInput" onkeyup="myFunction()" />
+                                    
+                                </div>
+                                <div class="row">
+                                    <table class="table" id="myTable">
+                                        <tr>
+                                            <th>
+                                                Medicine Name
+                                            </th>
+
+                                            <th>
+                                                Price
+                                            </th>
+                                            <th>
+                                                Expiry Date
+                                            </th>
+
+
+                                        </tr>
+
+
+
+                                        @foreach (var m in Model.Medicine)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @m.Name
+                                                </td>
+                                                <td>
+
+                                                    @m.Price
+
+                                                </td>
+
+                                                <td>
+
+                                                    @m.ExpDate.ToShortDateString()
+
+                                                </td>
+
+                                            </tr>
+                                        }
+
+
+
+
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="tab-pane fade" id="appointment" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+                                <table class="table">
+                                    <tr>
+                                        <th>
+                                            Patient Name
+                                        </th>
+
+                                        <th>
+                                            Date
+                                        </th>
+                                    </tr>
+
+                                    @foreach (var da in Model.Appointment)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @da.User.Name
+                                            </td>
+                                            <td>
+                                                @da.Date.ToShortDateString()
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <div class="tab-pane fade" id="inbox" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+                                <table class="table">
+                                    <tr>
+                                        <th>Patient Name</th>
+                                        <th>Message</th>
+                                        <th>Action</th>
+                                    </tr>
+
+                                    @foreach (var dm in Model.Message)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @dm.User.Name
+                                            </td>
+                                            <td>
+                                                @dm.Message1
+                                            </td>
+                                            <td>
+                                                @*<button class="btn btn--green" onClick="redirectOnClick(@dm.SenderId, @dm.RecieverId)">View & Reply</button>*@
+                                                <a href="/managemessages/sendmsgdoctor?pid=@dm.SenderId&did=@dm.RecieverId">View & Reply</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        }
+
+    </form>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    @*@section scripts{
+            <script type="text/javascript">
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+             // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+
+            $('#btnChange').click(function () {
+
+                var oldp = $("#txtoldpwd").val();
+                var newp = $("#txtnewpwd").val();
+                  // Extract info from data-* attributes
+
+                //saving data in db - form collection
+                var filedata = new FormData();
+                filedata.append("OldPassword", oldp);
+                filedata.append("Password", newp);
+
+            $.ajax({
+                url: '@Url.Action("ChangePassword","Home")',
+                type: 'post',
+                data: filedata,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function (msg) {
+                    if (msg == "Success") {
+                        alert("Password Changed!");
+                        window.location.href = '@Url.Action("UserProfile","Home")';
+                    }
+                },
+                error: function (ex) {
+                    alert("Wrong Old Password");
+                }
+            });
+            });
+        })
+            </script>*@
+    @*}*@
+
+

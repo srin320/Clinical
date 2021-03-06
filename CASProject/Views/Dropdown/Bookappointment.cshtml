@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Bookappointment";
+}
+
+<h2> Book Appointment</h2>
+<form method="post" action="/dropdown/bookappointment">
+    <div class="form-group">
+
+        <input type="text" class="form-control" hidden value=@Request.QueryString["pid"] id="txtpid" name="txtpid">
+        <input type="text" class="form-control" hidden value=@Request.QueryString["did"] id="txtdid" name="txtdid">
+
+    </div>
+    <div class="form-group">
+        <label for="txtnewpwd" class="col-form-label">appointmnet date</label>
+        <input type="date" class="form-control" id="txtdoa" name="txtdoa">
+
+        <input type="submit" value="Book" />
+
+    </div>
+</form>
+

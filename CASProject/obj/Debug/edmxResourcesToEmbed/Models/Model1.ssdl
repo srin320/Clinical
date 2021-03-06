@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CASDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AdminDetails">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdminName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Contact" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CartDetails">
+    <Key>
+      <PropertyRef Name="CartId" />
+    </Key>
+    <Property Name="CartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DrugId" Type="int" />
+    <Property Name="DrugName" Type="varchar" MaxLength="50" />
+    <Property Name="UnitPrice" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="UnitCount" Type="int" />
+    <Property Name="PackSize" Type="varchar" MaxLength="50" />
+    <Property Name="DrugCategory" Type="varchar" MaxLength="50" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="DrugPrice" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="DoctorDetails">
+    <Key>
+      <PropertyRef Name="DoctorId" />
+    </Key>
+    <Property Name="DoctorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DoctorName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Contact" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="DateOfBirth" Type="date" Nullable="false" />
+    <Property Name="Qualification" Type="varchar" MaxLength="50" />
+    <Property Name="Location" Type="varchar" MaxLength="50" />
+    <Property Name="Experience" Type="decimal" Precision="2" Scale="1" />
+    <Property Name="SpecialityId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DrugDetails">
+    <Key>
+      <PropertyRef Name="DrugId" />
+    </Key>
+    <Property Name="DrugId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DrugName" Type="varchar" MaxLength="50" />
+    <Property Name="UnitPrice" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="DescriptionOfDrug" Type="varchar" MaxLength="450" />
+    <Property Name="ManufacturedBy" Type="varchar" MaxLength="50" />
+    <Property Name="UnitCount" Type="int" />
+    <Property Name="PackSize" Type="varchar" MaxLength="50" />
+    <Property Name="Caution" Type="varchar" MaxLength="450" />
+    <Property Name="DrugImage" Type="varchar" MaxLength="150" />
+    <Property Name="DrugCategory" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LoginDetails">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MessageDetails">
+    <Key>
+      <PropertyRef Name="MessageId" />
+    </Key>
+    <Property Name="MessageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SenderId" Type="int" Nullable="false" />
+    <Property Name="ReceiverId" Type="int" Nullable="false" />
+    <Property Name="MessageText" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="OrderFrom" Type="int" />
+    <Property Name="QuantityOrdered" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="TotalPrice" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="isApproved" Type="bit" />
+    <Property Name="OrderStatus" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PatientDetails">
+    <Key>
+      <PropertyRef Name="PatientId" />
+    </Key>
+    <Property Name="PatientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Contact" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="DateOfBirth" Type="date" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="ProblemDescription" Type="varchar" MaxLength="50" />
+    <Property Name="MedicalRecords" Type="varbinary(max)" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleDetails">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SalesmanDetails">
+    <Key>
+      <PropertyRef Name="SalesmanId" />
+    </Key>
+    <Property Name="SalesmanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SalesmanName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Contact" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="SalesmanAddress" Type="varchar" MaxLength="50" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SpecialityDetails">
+    <Key>
+      <PropertyRef Name="SpecialityId" />
+    </Key>
+    <Property Name="SpecialityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SpecialityName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SupplierDetails">
+    <Key>
+      <PropertyRef Name="SupplierId" />
+    </Key>
+    <Property Name="SupplierId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SupplierName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Contact" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="SupplierAddress" Type="varchar" MaxLength="50" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AdminDetails_RoleDetails">
+    <End Role="RoleDetails" Type="Self.RoleDetails" Multiplicity="1" />
+    <End Role="AdminDetails" Type="Self.AdminDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleDetails">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="AdminDetails">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoctorDetails_LoginDetails">
+    <End Role="LoginDetails" Type="Self.LoginDetails" Multiplicity="1" />
+    <End Role="DoctorDetails" Type="Self.DoctorDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoginDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="DoctorDetails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoctorDetails_RoleDetails">
+    <End Role="RoleDetails" Type="Self.RoleDetails" Multiplicity="1" />
+    <End Role="DoctorDetails" Type="Self.DoctorDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleDetails">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="DoctorDetails">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoctorDetails_SpecialityDetails">
+    <End Role="SpecialityDetails" Type="Self.SpecialityDetails" Multiplicity="1" />
+    <End Role="DoctorDetails" Type="Self.DoctorDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpecialityDetails">
+        <PropertyRef Name="SpecialityId" />
+      </Principal>
+      <Dependent Role="DoctorDetails">
+        <PropertyRef Name="SpecialityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoginDetails_RoleDetails">
+    <End Role="RoleDetails" Type="Self.RoleDetails" Multiplicity="1" />
+    <End Role="LoginDetails" Type="Self.LoginDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleDetails">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="LoginDetails">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientDetails_LoginDetails">
+    <End Role="LoginDetails" Type="Self.LoginDetails" Multiplicity="1" />
+    <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoginDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="PatientDetails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientDetails_RoleDetails">
+    <End Role="RoleDetails" Type="Self.RoleDetails" Multiplicity="1" />
+    <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleDetails">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="PatientDetails">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesmanDetails_LoginDetails">
+    <End Role="LoginDetails" Type="Self.LoginDetails" Multiplicity="1" />
+    <End Role="SalesmanDetails" Type="Self.SalesmanDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoginDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="SalesmanDetails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesmanDetails_RoleDetails">
+    <End Role="RoleDetails" Type="Self.RoleDetails" Multiplicity="1" />
+    <End Role="SalesmanDetails" Type="Self.SalesmanDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleDetails">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="SalesmanDetails">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplierDetails_LoginDetails">
+    <End Role="LoginDetails" Type="Self.LoginDetails" Multiplicity="1" />
+    <End Role="SupplierDetails" Type="Self.SupplierDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoginDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="SupplierDetails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplierDetails_RoleDetails">
+    <End Role="RoleDetails" Type="Self.RoleDetails" Multiplicity="1" />
+    <End Role="SupplierDetails" Type="Self.SupplierDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleDetails">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="SupplierDetails">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="DeleteEntriesFromCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="CASDatabaseModelStoreContainer">
+    <EntitySet Name="AdminDetails" EntityType="Self.AdminDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CartDetails" EntityType="Self.CartDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DoctorDetails" EntityType="Self.DoctorDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DrugDetails" EntityType="Self.DrugDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginDetails" EntityType="Self.LoginDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MessageDetails" EntityType="Self.MessageDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatientDetails" EntityType="Self.PatientDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleDetails" EntityType="Self.RoleDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesmanDetails" EntityType="Self.SalesmanDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpecialityDetails" EntityType="Self.SpecialityDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SupplierDetails" EntityType="Self.SupplierDetails" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AdminDetails_RoleDetails" Association="Self.FK_AdminDetails_RoleDetails">
+      <End Role="RoleDetails" EntitySet="RoleDetails" />
+      <End Role="AdminDetails" EntitySet="AdminDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoctorDetails_LoginDetails" Association="Self.FK_DoctorDetails_LoginDetails">
+      <End Role="LoginDetails" EntitySet="LoginDetails" />
+      <End Role="DoctorDetails" EntitySet="DoctorDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoctorDetails_RoleDetails" Association="Self.FK_DoctorDetails_RoleDetails">
+      <End Role="RoleDetails" EntitySet="RoleDetails" />
+      <End Role="DoctorDetails" EntitySet="DoctorDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoctorDetails_SpecialityDetails" Association="Self.FK_DoctorDetails_SpecialityDetails">
+      <End Role="SpecialityDetails" EntitySet="SpecialityDetails" />
+      <End Role="DoctorDetails" EntitySet="DoctorDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoginDetails_RoleDetails" Association="Self.FK_LoginDetails_RoleDetails">
+      <End Role="RoleDetails" EntitySet="RoleDetails" />
+      <End Role="LoginDetails" EntitySet="LoginDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientDetails_LoginDetails" Association="Self.FK_PatientDetails_LoginDetails">
+      <End Role="LoginDetails" EntitySet="LoginDetails" />
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientDetails_RoleDetails" Association="Self.FK_PatientDetails_RoleDetails">
+      <End Role="RoleDetails" EntitySet="RoleDetails" />
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesmanDetails_LoginDetails" Association="Self.FK_SalesmanDetails_LoginDetails">
+      <End Role="LoginDetails" EntitySet="LoginDetails" />
+      <End Role="SalesmanDetails" EntitySet="SalesmanDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesmanDetails_RoleDetails" Association="Self.FK_SalesmanDetails_RoleDetails">
+      <End Role="RoleDetails" EntitySet="RoleDetails" />
+      <End Role="SalesmanDetails" EntitySet="SalesmanDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierDetails_LoginDetails" Association="Self.FK_SupplierDetails_LoginDetails">
+      <End Role="LoginDetails" EntitySet="LoginDetails" />
+      <End Role="SupplierDetails" EntitySet="SupplierDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierDetails_RoleDetails" Association="Self.FK_SupplierDetails_RoleDetails">
+      <End Role="RoleDetails" EntitySet="RoleDetails" />
+      <End Role="SupplierDetails" EntitySet="SupplierDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

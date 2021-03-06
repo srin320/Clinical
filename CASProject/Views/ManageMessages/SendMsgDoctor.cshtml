@@ -1,0 +1,64 @@
+﻿@using ClinicalDAL.EF;
+@using System.Collections.Generic;
+
+@model List<Message>
+
+@{
+    ViewBag.Title = "SendMsgDoctor";
+}
+
+@{ 
+    string uname = "";
+}
+
+<script>
+    function redirectOnClick(uname) {
+        document.location = '/profiles/doctor?username=' + uname;
+    }
+</script>
+
+<div class="row">
+    <div class="col-md-12 mt-2" style="background-color:aquamarine; height:400px; text-align:center">
+        @foreach (var item in Model)
+        {
+            if (item.SenderId == Convert.ToInt32(Request.QueryString["pid"]))
+            {
+                uname = item.User1.Username;
+                <span>
+                    <b>@item.User.Name:</b> @item.Message1 | @item.Date.ToShortDateString()
+                </span>
+            }
+            else
+            {
+                uname = item.User.Username;
+                <span>
+                    <b>Me:</b> @item.Message1 | @item.Date.ToShortDateString()
+                </span>
+            }
+            <hr />
+        }
+
+        <form method="post" action="/managemessages/sendmsgdoctor">
+            <div class="row col-md-12">
+                <div class="col-md-4 offset-4">
+                    <div class="form-group">
+                        @Html.Label("Type Message")
+                        @Html.TextArea("txtMsg")
+                    </div>
+                    <div class="form-group" hidden>
+                        <input type="text" name="sid" value="@Request.QueryString["did"]" />
+                    </div>
+                    <div class="form-group" hidden>
+                        <input type="text" name="rid" value="@Request.QueryString["pid"]" />
+                    </div>
+                    <div>
+                        <input type="submit" name="btn1" value="Send" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </form>
+        @*<button class="btn btn-primary" style="float:right">@Html.ActionLink("Back", "doctor", "profiles", "profiles/doctor", new { username = uname })</button>*@
+        <button class="btn btn-primary" style="float:right; color:white"><a href="/profiles/doctor?username=@uname" style="color:white">Back</a></button>
+    </div>
+</div>
+

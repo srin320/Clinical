@@ -1,0 +1,74 @@
+﻿@model CASProject.ViewModel.UserViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+ 
+ 
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="~/css/owl.carousel.min.css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="~/css/bootstrap.min.css">
+
+<!-- Style -->
+<link rel="stylesheet" href="~/css/loginmain.css">
+
+
+
+<div class="d-lg-flex half">
+    <div class="bg order-1 order-md-2" style="background-image: url('../images/Forgotpassword.gif');"></div>
+    <div class="contents order-2 order-md-1">
+
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-7">
+                    <div class="mb-4">
+                        <div class=" row align-items-center justify-content-center"><h3 style="margin-top:20px;margin-left:10px">Sign In</h3></div>
+
+                        <p class="mb-4">Welcome to Medicure! Login with your Email ID and password :)</p>
+                    </div>
+                    @using (Html.BeginForm("login", "manageusers", FormMethod.Post))
+                    {
+                        //<form action="/manageusers/check" method="post">
+                            <label for="emailid">Email ID</label>
+                            <div class=" form-control form-group border-light" style="border-bottom:thin">
+
+                                @*<input type="text" class="form-control" id="username">*@
+                                @Html.TextBoxFor(a => a.Username, new { @class = "form-group form-control-plaintext input--style-4" })
+                                @Html.ValidationMessageFor(a => a.Email, "", new { @class = "text-danger" })
+
+                            </div>
+                            <label for="password">Password</label>
+                            <div class="form-group form-control">
+
+                                @*<input type="password" class="form-control" id="password">*@
+                                @Html.TextBoxFor(a => a.Password, new { @class = "form-group form-control-plaintext input--style-4", Type = "password" })
+                            </div>
+                            <div class="text-danger" style="margin-top:10px">
+                                @ViewBag.Message
+                            </div>
+
+                            <input type="submit" value="Log In" class="btn btn-block btn-primary" onclick="btnsubmit" style="margin-top:15px">
+
+                            <span class="d-block text-center my-4 text-muted">
+                                New to Medicure? @Html.ActionLink("Register Now!", "Register", "manageuser", "/manageuser/Register", new { id = "btnLogin", style = "color: #01d28e" })
+                            </span>
+                            <div class="social-login"></div>
+                    } 
+
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<script src="~/js/jquery-3.2.1.min.js"></script>
+<script src="~/js/popper.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~js/loginmain.js"></script>

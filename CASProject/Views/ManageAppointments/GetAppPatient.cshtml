@@ -1,0 +1,53 @@
+﻿@using ClinicalDAL.EF;
+@using System.Collections.Generic;
+
+@model List<Appointment>
+
+@*@model CASProject.ViewModel.AppointmentViewModel*@
+
+@{
+    ViewBag.Title = "GetAppPatient";
+}
+<div class="jumbotron" style="text-align:center">
+    <h2 class="font-weight-bold">My Appointments</h2>
+</div>
+
+<div class="row col-md-12 mt-2">
+    <table class="table table-bordered table-hover">
+        <tr>
+            @*<th>Patient id</th>*@
+            <th>Doctor Name</th>
+            <th>Date</th>
+            <th>Option</th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @item.User.Name
+                    </td>*@
+                <td>
+                    @item.User1.Name
+                </td>
+                <td>
+                    @item.Date.ToShortDateString()
+                </td>
+                @if (item.Date.AddDays(7) > DateTime.Now && DateTime.Now.AddDays(7) > item.Date)
+                {
+                    <td>
+                        <a href="/managemessages/viewmsgpatient?pid=@item.PatientId&did=@item.DoctorId">Send Message</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a href="#" style="color:dimgray">Send Message</a>
+                    </td>
+                }
+
+            </tr>
+        }
+    </table>
+</div>
+

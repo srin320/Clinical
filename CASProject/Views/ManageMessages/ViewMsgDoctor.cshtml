@@ -1,0 +1,40 @@
+﻿@using ClinicalDAL.EF;
+@using System.Collections.Generic;
+
+@model List<Message>
+
+@{
+    ViewBag.Title = "ViewMsgDoctor";
+}
+
+<script>
+    function redirectOnClick(pid, did) {
+        document.location = '/managemessages/sendmsgdoctor?pid=' + pid + '&did=' + did;
+    }
+</script>
+
+<div class="row">
+    <div class="col-md-12 mt-2" style="background-color:aquamarine; height:400px; text-align:center">
+        <table class="table table-active">
+            <tr>
+                <th>Patient Name</th>
+                <th>Message</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.User.Name
+                    </td>
+                    <td>
+                        @item.Message1
+                    </td>
+                    <td>
+                        <button class="btn btn--pill" onClick="redirectOnClick(@item.SenderId, @item.RecieverId)">View & Reply</button>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CASDatabaseModelStoreContainer" CdmEntityContainer="CASDatabaseEntities">
+    <EntitySetMapping Name="RoleDetails">
+      <EntityTypeMapping TypeName="CASDatabaseModel.RoleDetail">
+        <MappingFragment StoreEntitySet="RoleDetails">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DoctorDetails">
+      <EntityTypeMapping TypeName="CASDatabaseModel.DoctorDetail">
+        <MappingFragment StoreEntitySet="DoctorDetails">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientDetails">
+      <EntityTypeMapping TypeName="CASDatabaseModel.PatientDetail">
+        <MappingFragment StoreEntitySet="PatientDetails">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="MedicalRecords" ColumnName="MedicalRecords" />
+          <ScalarProperty Name="ProblemDescription" ColumnName="ProblemDescription" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpecialityDetails">
+      <EntityTypeMapping TypeName="CASDatabaseModel.SpecialityDetail">
+        <MappingFragment StoreEntitySet="SpecialityDetails">
+          <ScalarProperty Name="SpecialityName" ColumnName="SpecialityName" />
+          <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminDetails">
+      <EntityTypeMapping TypeName="CASDatabaseModel.AdminDetail">
+        <MappingFragment StoreEntitySet="AdminDetails">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginDetails">
+      <EntityTypeMapping TypeName="CASDatabaseModel.LoginDetail">
+        <MappingFragment StoreEntitySet="LoginDetails">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalesmanDetails">
+      <EntityTypeMapping TypeName="CASDatabaseModel.SalesmanDetail">
+        <MappingFragment StoreEntitySet="SalesmanDetails">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="SalesmanAddress" ColumnName="SalesmanAddress" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="SalesmanName" ColumnName="SalesmanName" />
+          <ScalarProperty Name="SalesmanId" ColumnName="SalesmanId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupplierDetails">
+      <EntityTypeMapping TypeName="CASDatabaseModel.SupplierDetail">
+        <MappingFragment StoreEntitySet="SupplierDetails">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="SupplierAddress" ColumnName="SupplierAddress" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DrugDetails">
+      <EntityTypeMapping TypeName="CASDatabaseModel.DrugDetail">
+        <MappingFragment StoreEntitySet="DrugDetails">
+          <ScalarProperty Name="DrugCategory" ColumnName="DrugCategory" />
+          <ScalarProperty Name="DrugImage" ColumnName="DrugImage" />
+          <ScalarProperty Name="Caution" ColumnName="Caution" />
+          <ScalarProperty Name="PackSize" ColumnName="PackSize" />
+          <ScalarProperty Name="UnitCount" ColumnName="UnitCount" />
+          <ScalarProperty Name="ManufacturedBy" ColumnName="ManufacturedBy" />
+          <ScalarProperty Name="DescriptionOfDrug" ColumnName="DescriptionOfDrug" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+          <ScalarProperty Name="DrugId" ColumnName="DrugId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CartDetails">
+      <EntityTypeMapping TypeName="CASDatabaseModel.CartDetail">
+        <MappingFragment StoreEntitySet="CartDetails">
+          <ScalarProperty Name="UnitCount" ColumnName="UnitCount" />
+          <ScalarProperty Name="DrugPrice" ColumnName="DrugPrice" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="DrugCategory" ColumnName="DrugCategory" />
+          <ScalarProperty Name="PackSize" ColumnName="PackSize" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+          <ScalarProperty Name="DrugId" ColumnName="DrugId" />
+          <ScalarProperty Name="CartId" ColumnName="CartId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="CASDatabaseModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+          <ScalarProperty Name="isApproved" ColumnName="isApproved" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="QuantityOrdered" ColumnName="QuantityOrdered" />
+          <ScalarProperty Name="OrderFrom" ColumnName="OrderFrom" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="DeleteEntriesFromCart1" FunctionName="CASDatabaseModel.Store.DeleteEntriesFromCart" />
+    <EntitySetMapping Name="MessageDetails">
+      <EntityTypeMapping TypeName="CASDatabaseModel.MessageDetail">
+        <MappingFragment StoreEntitySet="MessageDetails">
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+          <ScalarProperty Name="ReceiverId" ColumnName="ReceiverId" />
+          <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+          <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

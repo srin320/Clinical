@@ -1,0 +1,54 @@
+﻿@using ClinicalDAL.EF;
+@using System.Collections.Generic;
+
+@model List<Appointment>
+
+@{
+    ViewBag.Title = "GetAppFrontOffice";
+}
+
+<div class="jumbotron" style="text-align:center">
+    <h2 class="font-weight-bold">All Appointments</h2>
+</div>
+
+<div class="row col-md-12 mt-2">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Patient Name</th>
+            <th>Doctor Name</th>
+            <th>Date</th>
+            <th>Action</th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.User.Name
+                </td>
+                <td>
+                    @item.User1.Name
+                </td>
+                <td>
+                    @item.Date.ToShortDateString()
+                </td>
+                @if (item.Status == 0)
+                {
+                    <td align="right">
+                        <button class="btn btn-success"><a href="/manageappointments/approve?aid=@item.Id" style="color:white">Approve</a></button>
+                        <button class="btn btn-danger"><a href="/manageappointments/deny?aid=@item.Id" style="color:white">Deny</a></button>
+                    </td>
+                }
+                else
+                {
+                    <td align="right">
+                        <button class="btn btn-dark" disabled>Approve</button>
+                        <button class="btn btn-dark" disabled>Deny</button>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+
+
