@@ -44,6 +44,9 @@ namespace ClinicalDAL
 
         }
 
+
+
+
         public List<EF.Medicine> GetMedicineByname(string name)
         {
             return mycontext.Medicines.Where(u => u.Name.ToLower().StartsWith(name.ToLower())).OrderBy(u => u.Name).ToList();
@@ -63,7 +66,14 @@ namespace ClinicalDAL
             return query.ToList();
         }
 
+        public List<EF.User> GetPatients()
+        {
+            IEnumerable<EF.User> query = from usr in mycontext.Users
+                                         where (usr.RoleId==2)
+                                         select usr;
 
+            return query.ToList();
+        }
         public void AddUser(EF.User usr)
 
         {
@@ -76,6 +86,23 @@ namespace ClinicalDAL
          
 
         }
+
+
+        public void AddMedicine(EF.Medicine med)
+
+        {
+
+            mycontext.Medicines.Add(med);
+
+            int norowaff = mycontext.SaveChanges();
+
+            // EF.User user = GetUserByID(usr.Id);
+
+
+        }
+
+
+
 
         public void AddUser(EF.User usr, EF.Doctor doc)
         {

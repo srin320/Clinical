@@ -34,7 +34,7 @@ namespace CASProject.Controllers
 
 
         [HttpPost]
-        public ActionResult Register(ViewModel.UserViewModel usr, ViewModel.DoctorUserViewModel doc)
+        public ActionResult Register(ViewModel.UserViewModel usr)
         {
             if (ModelState.IsValid)
             {
@@ -127,11 +127,11 @@ namespace CASProject.Controllers
                 }
                 else if (rid == 3)
                 {
-                    return RedirectToAction("Pharmacist", "Profiles", new { username = uname });
+                    return RedirectToAction("FrontOfficeMember", "Profiles", new { username = uname });
                 }
                 else  
                 {
-                    return RedirectToAction("FrontOfficeMember", "Profiles", new { username = uname });
+                    return RedirectToAction("Pharmacist", "Profiles", new { username = uname });
                 }
 
    

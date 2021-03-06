@@ -130,6 +130,7 @@
     <Compile Include="Controllers\DropdownController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageAppointmentsController.cs" />
+    <Compile Include="Controllers\ManageMedicineController.cs" />
     <Compile Include="Controllers\ManageMessagesController.cs" />
     <Compile Include="Controllers\ManageUsersController.cs" />
     <Compile Include="Controllers\ProfilesController.cs" />
@@ -529,6 +530,8 @@
     <Content Include="Views\ManageMessages\SendMsgDoctor.cshtml" />
     <Content Include="Views\Profiles\FrontOfficeMember.cshtml" />
     <Content Include="Views\Dropdown\Bookappointment.cshtml" />
+    <Content Include="Views\Profiles\Pharmacist.cshtml" />
+    <Content Include="Views\ManageMedicine\AddMedicine.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -2,7 +2,7 @@
 @using CASProject.Controllers;
 @using System.Collections.Generic;
 @using CASProject.ViewModel;
- 
+
 @model dynamic
 
 @{
@@ -12,6 +12,28 @@
 
 
 <script type="text/javascript">
+
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
 
     function RedirectOnclick(uid) {
         document.location = "/Dropdown/ShowDropdown?uid=" + uid;
@@ -262,9 +284,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#appointment" role="tab" aria-controls="profile" aria-selected="false">View Appointments</a>
                             </li>
-                            <li class="nav-item">
+                            @*<li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#ss" role="tab" aria-controls="profile" aria-selected="false">Inbox</a>
-                            </li>
+                            </li>*@
                         </ul>
                     </div>
                 </div>
@@ -336,53 +358,62 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="medicine" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="row">
-                                <table class="table">
-                                    <tr>
-                                        <th>
-                                            Medicine Name
-                                        </th>
 
-                                        <th>
-                                            Price
-                                        </th>
-                                        <th>
-                                            Expiry Date
-                                        </th>
+                        <form method="POST" action="/Profiles/Doctor">
+                            <div class="tab-pane fade" id="medicine" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="input-group">
+                                    <input type="search" class="form-control rounded" placeholder="Search Medicine" aria-label="Search"
+                                           aria-describedby="search-addon" name="searchname" onkeyup="myFunction()" id="myInput" />
 
-
-                                    </tr>
-
-
-
-                                    @foreach (var m in Model.Medicine)
-                                    {
+                                </div>
+                                <div class="row">
+                                    <table class="table" id="myTable">
                                         <tr>
-                                            <td>
-                                                @m.Name
-                                            </td>
-                                            <td>
+                                            <th>
+                                                Medicine Name
+                                            </th>
 
-                                                @m.Price
+                                            <th>
+                                                Price
+                                            </th>
+                                            <th>
+                                                Expiry Date
+                                            </th>
 
-                                            </td>
-
-                                            <td>
-
-                                                @m.ExpDate.ToShortDateString()
-
-                                            </td>
 
                                         </tr>
-                                    }
+
+
+
+                                        @foreach (var m in Model.Medicine)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @m.Name
+                                                </td>
+                                                <td>
+
+                                                    @m.Price
+
+                                                </td>
+
+                                                <td>
+
+                                                    @m.ExpDate.ToShortDateString()
+
+                                                </td>
+
+                                            </tr>
+                                        }
 
 
 
 
-                                </table>
+                                    </table>
+
+                                </div>
                             </div>
-                        </div>
+                        </form>
 
                         <div class="tab-pane fade" id="appointment" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
@@ -406,26 +437,26 @@
 
                                     @foreach (var a in Model.Appointment)
                                     {
-                                <tr>
-                                    <td>
-                                        @a.User1.Name
-                                    </td>
-                                    <td>
-                                        @a.Date.ToShortDateString()
-                                    </td>
-                                    @if (a.Date.AddDays(7) > DateTime.Now && DateTime.Now.AddDays(7) > a.Date)
-                                    {
-                                        <td>
-                                            <a href="/managemessages/viewmsgpatient?pid=@a.PatientId&did=@a.DoctorId">Send Message</a>
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            <a href="#" style="color:dimgray">Send Message</a>
-                                        </td>
-                                    }
-                                </tr>
+                                        <tr>
+                                            <td>
+                                                @a.User1.Name
+                                            </td>
+                                            <td>
+                                                @a.Date.ToShortDateString()
+                                            </td>
+                                            @if (a.Date.AddDays(7) > DateTime.Now && DateTime.Now.AddDays(7) > a.Date)
+                                            {
+                                                <td>
+                                                    <a href="/managemessages/viewmsgpatient?pid=@a.PatientId&did=@a.DoctorId">Send Message</a>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    <a href="#" style="color:dimgray">Send Message</a>
+                                                </td>
+                                            }
+                                        </tr>
                                     }
 
 
@@ -436,12 +467,11 @@
                         </div>
 
                     </div>
+ </div>
                 </div>
-            </div>
-        }
+}
 
-    </form>
-
+        </form>
 
 
 
@@ -470,6 +500,7 @@
 
 
 
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 

@@ -11,33 +11,35 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 
-<script type="text/javascript">
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
 
-    function myFunction() {
-        // Declare variables
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+    }
     function redirectOnClick(pid, did) {
         document.location = '/managemessages/sendmsgdoctor?pid=' + pid + '&did=' + did;
     }
 </script>
+
+   
+ 
 
 <style>
     body {
@@ -380,8 +382,8 @@
                             <div class="tab-pane fade" id="medicine" role="tabpanel" aria-labelledby="profile-tab">
                                 <div class="input-group">
                                     <input type="search" class="form-control rounded" placeholder="Search Medicine" aria-label="Search"
-                                           aria-describedby="search-addon" name="searchname" id="myInput" onkeyup="myFunction()" />
-                                    
+                                           aria-describedby="search-addon" name="searchname" onkeyup="myFunction()" id="myInput" />
+
                                 </div>
                                 <div class="row">
                                     <table class="table" id="myTable">
@@ -427,6 +429,7 @@
 
 
                                     </table>
+                                    
                                 </div>
                             </div>
                         </form>

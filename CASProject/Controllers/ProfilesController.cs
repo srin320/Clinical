@@ -171,31 +171,23 @@ namespace CASProject.Controllers
             }
         }
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             public ActionResult Pharmacist(ViewModel.UserViewModel usr)
-        {
+            {
             ViewModel.UserViewModel model = new ViewModel.UserViewModel();
             var uname = Request.QueryString["username"];
             var users = userRepo.GetProfiles(uname);
 
+            
+            var med = userRepo.GetMedicine().ToList();
 
-            return View(users);
+            dynamic mymodel = new ExpandoObject();
+
+            mymodel.Medicine = med;
+            mymodel.User = users;
+           // mymodel.Appointment = appointments;
+
+            return View(mymodel);
 
         }
         public ActionResult FrontOfficeMember(ViewModel.UserViewModel usr)
@@ -203,10 +195,18 @@ namespace CASProject.Controllers
             ViewModel.UserViewModel model = new ViewModel.UserViewModel();
             var uname = Request.QueryString["username"];
             var users = userRepo.GetProfiles(uname);
+            var appointments = appointmentRepo.GetAppointmentsForFrontOffice();
+            var pusers = userRepo.GetPatients();
 
+            dynamic mymodel = new ExpandoObject();
 
-            return View(users);
+           
+            mymodel.User = users;
+            mymodel.Patient = pusers;
+            mymodel.Appointment = appointments;
+            
 
+            return View(mymodel);
         }
 
     }

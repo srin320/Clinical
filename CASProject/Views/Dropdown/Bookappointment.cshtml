@@ -3,20 +3,40 @@
     ViewBag.Title = "Bookappointment";
 }
 
-<h2> Book Appointment</h2>
-<form method="post" action="/dropdown/bookappointment">
-    <div class="form-group">
+ 
 
-        <input type="text" class="form-control" hidden value=@Request.QueryString["pid"] id="txtpid" name="txtpid">
-        <input type="text" class="form-control" hidden value=@Request.QueryString["did"] id="txtdid" name="txtdid">
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins"   >
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body"   >
+                    <h2 class="title row row-space">Book Appointment Date</h2>
 
-    </div>
-    <div class="form-group">
-        <label for="txtnewpwd" class="col-form-label">appointmnet date</label>
-        <input type="date" class="form-control" id="txtdoa" name="txtdoa">
+                    <form method="post" action="/dropdown/bookappointment"    >
 
-        <input type="submit" value="Book" />
+                        <div style="margin-bottom:20px"  class="row"  >
+                           
+                             
+                            <div class="form-group">
 
-    </div>
-</form>
+                                <input type="text" class="form-control" hidden value=@Request.QueryString["pid"] id="txtpid" name="txtpid">
+                                <input type="text" class="form-control" hidden value=@Request.QueryString["did"] id="txtdid" name="txtdid">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="txtnewpwd" class="col-form-label">Choose Date</label>
+                                <input type="date" class="form-control" id="txtdoa" name="txtdoa">
+
+                               
+
+
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--green" type="submit" value="submit" id="btnsave">Book</button>
+                                </div>
+
+
+                            </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
 

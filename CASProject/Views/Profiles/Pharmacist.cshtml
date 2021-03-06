@@ -6,10 +6,13 @@
 @model dynamic
 
 @{
-    ViewBag.Title = "FrontOfficeMember";
+    ViewBag.Title = "Pharmacist";
 }
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script>
+
+
+<script type="text/javascript">
+
     function myFunction() {
         // Declare variables
         var input, filter, table, tr, td, i, txtValue;
@@ -20,7 +23,7 @@
 
         // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
+            td = tr[i].getElementsByTagName("td")[0];
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -30,6 +33,12 @@
                 }
             }
         }
+    }
+
+    function RedirectOnclick(username)
+    {
+        document.location = "/ManageMedicine/AddMedicine?username="+username;
+
     }
 </script>
 
@@ -166,7 +175,7 @@
 
 
             <div class="modal-body">
-                <form method="POST" action="/Profiles/FrontOfficeMember">
+                <form method="POST" action="/Profiles/Pharmacist">
 
                     @foreach (var item in Model.User)
                     {
@@ -256,13 +265,11 @@
                 <div class="col-md-6">
                     <div class="profile-head">
 
-                        <!-- Button trigger modal -->
-                        @*<button type="button" class="btn btn-primary" onclick="RedirectOnclick(@item.Id)">
-                                View All Appointment
-                            </button>*@
+ 
 
-                        <!-- Modal -->
-
+                        <button type="submit" class="btn btn-primary">
+                            <a href="/ManageMedicine/AddMedicine?username=@item.Username" style="color:white">   Add Medicine</a>
+                        </button>
 
                         <br />
                         <br />
@@ -272,14 +279,14 @@
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#patient" role="tab" aria-controls="profile" aria-selected="false">View Patients</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#appointment" role="tab" aria-controls="profile" aria-selected="false">View Appointments</a>
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#medicine" role="tab" aria-controls="profile" aria-selected="false">View Medicines</a>
                             </li>
                             @*<li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#ss" role="tab" aria-controls="profile" aria-selected="false">Inbox</a>
-                                </li>*@
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#appointment" role="tab" aria-controls="profile" aria-selected="false">Add Medicine</a>
+            </li>*@
+                            @*<li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#ss" role="tab" aria-controls="profile" aria-selected="false">Inbox</a>
+            </li>*@
                         </ul>
                     </div>
                 </div>
@@ -352,52 +359,74 @@
                             </div>
                         </div>
 
-                        <form method="POST" action="/Profiles/FrontOfficeMember">
-                            <div class="tab-pane fade" id="patient" role="tabpanel" aria-labelledby="profile-tab">
+                        <form method="POST" action="/Profiles/Doctor">
+                            <div class="tab-pane fade" id="medicine" role="tabpanel" aria-labelledby="profile-tab">
                                 <div class="input-group">
-                                    <input type="search" class="form-control rounded" placeholder="Search Patient" aria-label="Search"
+                                    <input type="search" class="form-control rounded" placeholder="Search Medicine" aria-label="Search"
                                            aria-describedby="search-addon" name="searchname" onkeyup="myFunction()" id="myInput" />
 
                                 </div>
                                 <div class="row">
                                     <table class="table" id="myTable">
-                                        <tr >
-                                            <th >
-                                                Patient ID
+                                        <tr>
+                                            <th>
+                                                Medicine Name
                                             </th>
 
-                                            <th >
-                                                Patient Name
+                                            <th>
+                                                Price(₹)
                                             </th>
                                             <th>
-                                                Patient Phone
+                                                Quantity
                                             </th>
-
+                                            <th>
+                                                Expiry Date
+                                            </th>
 
 
                                         </tr>
 
 
 
-                                        @foreach (var m in Model.Patient)
+                                        @foreach (var m in Model.Medicine)
                                         {
-                                            <tr>
-                                                <td>
-                                                    @m.Id.ToString()
-                                                </td>
-                                                <td>
+                                    <tr>
+                                        <td>
+                                            @m.Name
+                                        </td>
+                                        <td>
 
-                                                    @m.Name
+                                            @m.Price
 
-                                                </td>
+                                        </td>
+                                        <td>
 
-                                                <td>
+                                            @m.Quantity
 
-                                                    @m.Phone
+                                        </td>
 
-                                                </td>
+                                        <td>
 
-                                            </tr>
+                                            @m.ExpDate.ToShortDateString()
+
+                                        </td>
+
+                                        <td>
+                                            <button type="submit" class=" ">
+                                                <a href="#"> Edit</a>
+                                            </button>
+
+                                        </td>
+
+
+                                        <td>
+                                            <button type="submit" class=" ">
+                                                <a href="#"> Delete</a>
+                                            </button>
+
+                                        </td>
+
+                                    </tr>
                                         }
 
 
@@ -409,54 +438,9 @@
                             </div>
                         </form>
 
-                        <div class="tab-pane fade" id="appointment" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tab-pane fade" id="app" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
-                                <table class="table">
-                                    <tr>
-                                        <th>
-                                            Doctor Name
-                                        </th>
-
-                                        <th>
-                                            Date
-                                        </th>
-                                        <th>
-                                            Option
-                                        </th>
-
-
-                                    </tr>
-
-
-
-                                    @foreach (var a in Model.Appointment)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @a.User1.Name
-                                            </td>
-                                            <td>
-                                                @a.Date.ToShortDateString()
-                                            </td>
-                                            @if (a.Date.AddDays(7) > DateTime.Now && DateTime.Now.AddDays(7) > a.Date)
-                                            {
-                                                <td>
-                                                    <a href="/managemessages/viewmsgpatient?pid=@a.PatientId&did=@a.DoctorId">Send Message</a>
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                                <td>
-                                                    <a href="#" style="color:dimgray">Send Message</a>
-                                                </td>
-                                            }
-                                        </tr>
-                                    }
-
-
-
-
-                                </table>
+                                
                             </div>
                         </div>
 

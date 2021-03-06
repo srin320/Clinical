@@ -1,0 +1,110 @@
+﻿@using ClinicalDAL.EF;
+@using CASProject.Controllers;
+@using System.Collections.Generic;
+@using CASProject.ViewModel;
+
+@model List<Medicine>
+@{
+    ViewBag.Title = "AddMedicine";
+}
+
+ 
+
+
+<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <div class="card-body">
+                <h2 class="title row row-space">Add Medicine</h2>
+
+                <form method="POST" action="/ManageMedicine/AddMedicine">
+
+                    <div style="margin-bottom:20px" class="row">
+                        <label style="margin-right:17px;margin-top:10px;text-transform:none" class="label"></label>
+
+                        <div class="rs-select2 js-select-simple select--no-search m-md-2">
+
+                            <div class="row row-space">
+                                <div class="input-group">
+                                    <label class="label">Medicine Name</label>
+                                    <input type="text" name="txtmed" class="input--style-4" />
+
+                                    <input type="text" name="txtuname" class="input--style-4" hidden value=@Request.QueryString["username"] />
+
+
+                                </div>
+                            </div>
+
+                            <div class="row row-space">
+                                <div class="input-group">
+                                    <label class="label">Quantity</label>
+                                    <input type="number" name="txtquan" class="input--style-4" />
+
+
+                                </div>
+                            </div>
+
+                            <div class="row row-space">
+                                <div class="input-group">
+                                    <label class="label">Price</label>
+                                    <input type="text" name="txtprice" class="input--style-4" />
+
+
+                                </div>
+                            </div>
+
+                            <div class="row row-space">
+                                <div class="input-group">
+                                    <label class="label">Expiry Date</label>
+                                    <input type="date" name="txtdate" class="input--style-4" />
+
+
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="input-group">
+                                    <label class="label">Tax (%)</label>
+                                    <input type="number" name="txttax" class="input--style-4" />
+
+
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="input-group">
+                                    <label class="label">Discount (%)</label>
+                                    <input type="number" name="txtdis" class="input--style-4" />
+
+
+                                </div>
+                            </div>
+
+                            <div class="row row-space">
+                                <div></div>
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--green" type="submit" value="submit" id="btnsave">Add</button>
+                                </div>
+                                <div></div>
+                            </div>
+
+
+
+                            <div class="row row-space">
+                                <div></div>
+                                <div class="p-t-15">
+                                    <button type="submit" class="btn btn--radius-2 btn--green">
+                                        <a href="/Profiles/Pharmacist?username=@Request.QueryString["username"]" style="color:white"> Go back</a>
+                                    </button>
+                                </div>
+                                <div></div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
