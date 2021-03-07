@@ -63,10 +63,34 @@ namespace CASProject.Controllers
             return RedirectToAction("AddMedicine", "ManageMedicine", new {username=username});
         }
 
+        public ActionResult Delete()
+        {
+            int mid = Convert.ToInt32(Request.QueryString["mid"]);
+            userRepo.DeleteMedicine(mid);
+            string username = Request.QueryString["username"];
+            return RedirectToAction("Pharmacist", "Profiles", new { username = username });
+        }
 
+        public ActionResult EditMedicine()
+        {
+            string username = Request.QueryString["username"];
+            int mid = Convert.ToInt32(Request.QueryString["mid"]);
+            var med = userRepo.GetMedicineById(mid);
+            return View(med);
+        }
 
+        [HttpPost]
+        public ActionResult EditMedicine(string str)
+        {
+            int mid = Convert.ToInt32(Request["txtid"]);
+            string username = Request["txtuname"];
+            
+            int qty = Convert.ToInt32(Request["txtqty"]);
+            decimal prc = Convert.ToDecimal(Request["txtprice"]);
 
+            userRepo.UpdateMedicine(mid, qty, prc);
 
-
+            return RedirectToAction("pharmacist", "profiles", new { username = username });
+        }
     }
 }

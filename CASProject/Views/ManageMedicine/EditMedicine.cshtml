@@ -1,0 +1,41 @@
+﻿@using ClinicalDAL.EF;
+@using CASProject.Controllers;
+@using System.Collections.Generic;
+@using CASProject.ViewModel;
+
+@model Medicine
+
+@{
+    ViewBag.Title = "EditMedicine";
+}
+
+<h2>Edit Medicine</h2>
+
+<div class="container">
+    <form method="POST" action="/managemedicine/editmedicine">
+        <div class="form-group">
+            <label for="txtoldpwd" class="col-form-label">Name</label>
+            <input type="text" class="form-control" id="txtid" name="txtid" value=@Model.Id readonly hidden />
+            <input type="text" class="form-control" id="txtuname" name="txtuname" value=@Request.QueryString["username"] readonly hidden />
+            <input type="text" class="form-control" id="txtname" name="txtname" value=@Model.Name readonly />
+
+        </div>
+        <div class="form-group">
+            <label for="txtnewpwd" class="col-form-label">Quantity</label>
+            <input type="number" class="form-control" id="txtqty" name="txtqty" value=@Model.Quantity>
+        </div>
+        <div class="form-group">
+            <label for="txtoldpwd" class="col-form-label">Expiry Date</label>
+            <input type="text" class="form-control" id="txtexp" name="txtexp" value=@Model.ExpDate readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="txtoldpwd" class="col-form-label">Price</label>
+            <input type="text" class="form-control" id="txtprice" name="txtprice" value=@Model.Price>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"><a href="/Profiles/Pharmacist?username=@Request.QueryString["username"]" style="color:white">Back</a></button>
+            <button class="btn btn--radius-2 btn--green" type="submit" value="save">Update</button>
+        </div>
+    </form>
+</div>

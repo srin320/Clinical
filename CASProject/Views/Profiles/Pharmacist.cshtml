@@ -8,6 +8,11 @@
 @{
     ViewBag.Title = "Pharmacist";
 }
+
+@{ 
+    string username = Request.QueryString["username"];
+}
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 
@@ -413,7 +418,7 @@
 
                                         <td>
                                             <button type="submit" class=" ">
-                                                <a href="#"> Edit</a>
+                                                <a href="/ManageMedicine/EditMedicine?mid=@m.Id&username=@item.Username"> Edit</a>
                                             </button>
 
                                         </td>
@@ -421,7 +426,7 @@
 
                                         <td>
                                             <button type="submit" class=" ">
-                                                <a href="#"> Delete</a>
+                                                <a href="/managemedicine/delete?mid=@m.Id&username=@username"> Delete</a>
                                             </button>
 
                                         </td>

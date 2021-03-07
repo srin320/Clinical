@@ -44,7 +44,10 @@ namespace ClinicalDAL
 
         }
 
-
+        public EF.Medicine GetMedicineById(int mid)
+        {
+            return mycontext.Medicines.Where(u => u.Id == mid).FirstOrDefault();
+        }
 
 
         public List<EF.Medicine> GetMedicineByname(string name)
@@ -101,7 +104,23 @@ namespace ClinicalDAL
 
         }
 
+        public void DeleteMedicine(int id)
+        {
+            var item = mycontext.Medicines.Where(u => u.Id == id).FirstOrDefault();
+            mycontext.Medicines.Remove(item);
+            int rowaff = mycontext.SaveChanges();
+        }
 
+
+        public void UpdateMedicine(int id, int qty, decimal price)
+        {
+            var med = mycontext.Medicines.Where(u => u.Id == id).FirstOrDefault();
+
+            med.Quantity = qty;
+            med.Price = Convert.ToDouble(price);
+
+            mycontext.SaveChanges();
+        }
 
 
         public void AddUser(EF.User usr, EF.Doctor doc)

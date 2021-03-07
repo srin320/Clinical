@@ -532,6 +532,8 @@
     <Content Include="Views\Dropdown\Bookappointment.cshtml" />
     <Content Include="Views\Profiles\Pharmacist.cshtml" />
     <Content Include="Views\ManageMedicine\AddMedicine.cshtml" />
+    <Content Include="Views\ManageMedicine\Delete.cshtml" />
+    <Content Include="Views\ManageMedicine\EditMedicine.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
