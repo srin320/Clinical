@@ -43,7 +43,8 @@ namespace CASProject.Controllers
 
             appointmentRepo.ApproveAppointment(appid);
 
-            return RedirectToAction("GetAppFrontOffice");
+            string username = Request.QueryString["username"];
+            return RedirectToAction("FrontOfficeMember", "Profiles", new { username = username });
         }
 
         public ActionResult Deny()
@@ -51,8 +52,8 @@ namespace CASProject.Controllers
             int appid = Convert.ToInt32(Request.QueryString["aid"]);
 
             appointmentRepo.DenyAppointment(appid);
-
-            return RedirectToAction("GetAppFrontOffice");
+            string username = Request.QueryString["username"];
+            return RedirectToAction("FrontOfficeMember", "Profiles", new {username=username});
         }
     }
 }

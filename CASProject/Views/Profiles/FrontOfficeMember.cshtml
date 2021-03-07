@@ -8,6 +8,10 @@
 @{
     ViewBag.Title = "FrontOfficeMember";
 }
+
+@{ 
+    string username = Request.QueryString["username"];
+}
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script>
     function myFunction() {
@@ -414,14 +418,14 @@
                                 <table class="table">
                                     <tr>
                                         <th>
-                                            Doctor Name
+                                            Date
                                         </th>
 
                                         <th>
-                                            Date
+                                            Doctor Name
                                         </th>
                                         <th>
-                                            Option
+                                            Patient Name
                                         </th>
 
 
@@ -431,26 +435,31 @@
 
                                     @foreach (var a in Model.Appointment)
                                     {
-                                        <tr>
-                                            <td>
-                                                @a.User1.Name
-                                            </td>
-                                            <td>
-                                                @a.Date.ToShortDateString()
-                                            </td>
-                                            @if (a.Date.AddDays(7) > DateTime.Now && DateTime.Now.AddDays(7) > a.Date)
-                                            {
-                                                <td>
-                                                    <a href="/managemessages/viewmsgpatient?pid=@a.PatientId&did=@a.DoctorId">Send Message</a>
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                                <td>
-                                                    <a href="#" style="color:dimgray">Send Message</a>
-                                                </td>
-                                            }
-                                        </tr>
+                                <tr>
+                                    <td>
+                                        @a.Date.ToShortDateString()
+                                    </td>
+                                    <td>
+                                        @a.User1.Name
+                                    </td>
+                                    <td>
+                                        @a.User.Name
+                                    </td>
+                                    @if (a.Status == 0)
+                                    {
+                                        <td align="right">
+                                            <button class="btn btn-success"><a href="/manageappointments/approve?aid=@a.Id&username=@username" style="color:white">Approve</a></button>
+                                            <button class="btn btn-danger"><a href="/manageappointments/deny?aid=@a.Id&username=@username" style="color:white">Deny</a></button>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td align="right">
+                                            <button class="btn btn-dark" disabled>Approve</button>
+                                            <button class="btn btn-dark" disabled>Deny</button>
+                                        </td>
+                                    }
+                                </tr>
                                     }
 
 
