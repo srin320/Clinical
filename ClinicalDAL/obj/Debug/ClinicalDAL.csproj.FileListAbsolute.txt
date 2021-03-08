@@ -136,4 +136,3 @@ C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\Clini
 C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.csproj.CopyComplete
 C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.dll
 C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.pdb
-C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.csprojAssemblyReference.cache
