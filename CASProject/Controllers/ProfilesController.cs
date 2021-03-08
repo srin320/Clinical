@@ -63,7 +63,7 @@ namespace CASProject.Controllers
         {
             userRepo = new ClinicalDAL.UserRepository();
             ClinicalDAL.EF.User u = new ClinicalDAL.EF.User();
-            string  qryname = Request.QueryString["username"];
+           // string  qryname = Request.QueryString["username"];
             if (!ModelState.IsValid)
             {
                 string username = Request["txtuname"];
@@ -71,20 +71,24 @@ namespace CASProject.Controllers
                 string Address = Request["txtadd"];
                 string Qualification = Request["txtqual"];
                 string Password = Request["txtpwd"];
-
+                var did = userRepo.getuserbyuname(username);
                 var obj = userRepo.GetProfiles(username);
-                userRepo.UpdateUser(qryname, Phone, Address, Qualification, Password);
+                userRepo.UpdateUser(username, Phone, Address, Qualification, Password);
+                var appointments = appointmentRepo.GetAppointmentsForDoctor(did.Id);
+                var msgs = msgRepo.GetLatestMsgForDoctor(did.Id);
 
-
-                var users = userRepo.GetDoctor(qryname);
+                var users = userRepo.GetDoctor(username);
                 string sname = Request["searchname"];
                 if (sname != null)
                 {
                     var medname = userRepo.GetMedicineByname(sname);
                     dynamic mymodel = new ExpandoObject();
 
+
                     mymodel.Medicine = medname;
                     mymodel.Doctor = users;
+                    mymodel.Appointment = appointments;
+                    mymodel.Message = msgs;
                     return View(mymodel);
                 }
                 else
@@ -94,6 +98,8 @@ namespace CASProject.Controllers
 
                     mymodel.Medicine = medname;
                     mymodel.Doctor = users;
+                    mymodel.Appointment = appointments;
+                    mymodel.Message = msgs;
                     return View(mymodel);
                 }
             }
@@ -109,9 +115,6 @@ namespace CASProject.Controllers
         }
 
  
-
-
-
 
             [HttpGet]
             public ActionResult Patient(ViewModel.UserViewModel usr)
@@ -147,7 +150,6 @@ namespace CASProject.Controllers
             }
 
              
-
         }
 
 
@@ -168,16 +170,22 @@ namespace CASProject.Controllers
                 string Phone = Request["txtphone"];
                 string Address = Request["txtadd"];                
                 string Password = Request["txtpwd"];
-
+                 var pid = userRepo.getuserbyuname(username);
                 userRepo.UpdateProfile(username, Phone, Address, Password);
 
                 ViewModel.UserViewModel model = new ViewModel.UserViewModel();
                // var uname = Request.QueryString["username"];
                 var users = userRepo.GetProfiles(username);
+                var appointments = appointmentRepo.GetAppointmentsForPatient(pid.Id);
+               
+                var med = userRepo.GetMedicine().ToList();
+                dynamic mymodel = new ExpandoObject();
 
+                mymodel.Medicine = med;
+                mymodel.User = users;
+                mymodel.Appointment = appointments;
 
-                return View(users);
-
+                return View(mymodel);
 
             }
             else
@@ -216,8 +224,43 @@ namespace CASProject.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult Pharmacist(ViewModel.UserViewModel usr, string u)
+        {
+            if (Session["Myuser"] != null && (Session["Myrole"].Equals("4")))
+            {
 
-        
+                ViewModel.UserViewModel model = new ViewModel.UserViewModel();
+                /*var uname = Request.QueryString["username"];
+                var users = userRepo.GetProfiles(uname);*/
+                string username = Request["txtuname"];
+                string Phone = Request["txtphone"];
+                string Address = Request["txtadd"];
+                string Password = Request["txtpwd"];
+                var pid = userRepo.getuserbyuname(username);
+                userRepo.UpdateProfile(username, Phone, Address, Password);
+
+                
+                
+                var users = userRepo.GetProfiles(username);
+
+                var med = userRepo.GetMedicine().ToList();
+
+                dynamic mymodel = new ExpandoObject();
+
+                mymodel.Medicine = med;
+                mymodel.User = users;
+                return View(mymodel);
+            }
+            else
+            {
+                ViewModel.UserViewModel model = new ViewModel.UserViewModel();
+                return View(model);
+            }
+        }
+
+
+        [HttpGet]
         public ActionResult FrontOfficeMember(ViewModel.UserViewModel usr)
         {
             if (Session["Myuser"] != null && (Session["Myrole"].Equals("3")))
@@ -231,6 +274,41 @@ namespace CASProject.Controllers
                 dynamic mymodel = new ExpandoObject();
 
 
+                mymodel.User = users;
+                mymodel.Patient = pusers;
+                mymodel.Appointment = appointments;
+
+
+                return View(mymodel);
+            }
+            else
+            {
+
+                ViewModel.UserViewModel model = new ViewModel.UserViewModel();
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult FrontOfficeMember(ViewModel.UserViewModel usr, string u)
+        {
+            if (Session["Myuser"] != null && (Session["Myrole"].Equals("3")))
+            {
+                ViewModel.UserViewModel model = new ViewModel.UserViewModel();
+               // var uname = Request.QueryString["username"];
+                string username = Request["txtuname"];
+                string Phone = Request["txtphone"];
+                string Address = Request["txtadd"];
+                string Password = Request["txtpwd"];
+                var pid = userRepo.getuserbyuname(username);
+                userRepo.UpdateProfile(username, Phone, Address, Password);
+
+
+                var users = userRepo.GetProfiles(username);
+                var appointments = appointmentRepo.GetAppointmentsForFrontOffice();
+                var pusers = userRepo.GetPatients();
+
+                dynamic mymodel = new ExpandoObject();
                 mymodel.User = users;
                 mymodel.Patient = pusers;
                 mymodel.Appointment = appointments;
