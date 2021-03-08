@@ -50,8 +50,8 @@ namespace CASProject.Controllers
             decimal dis = Convert.ToDecimal(Request["txtdis"]);
             string date = Request["txtdate"];
             decimal price = Convert.ToDecimal(Request["txtprice"]);
-
-            decimal fprice = (price + ((tax/100)*price) - ((dis/100)*price));
+            decimal taxprice = (price + ((tax / 100) * price));
+            decimal fprice = taxprice - ((dis/100)*taxprice);
             med.Name = name;
             med.Quantity = qty;
             med.Price = Convert.ToDouble(fprice);

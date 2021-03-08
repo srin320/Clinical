@@ -35,6 +35,28 @@
             }
         }
     }
+    function searchappoint() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput2");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable2");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    
 </script>
 
 
@@ -257,7 +279,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
+                        <img src="https://lh3.googleusercontent.com/proxy/YbpzgvT6qm-AJk110Ysesh3Dp86osqFqb3ZCoQoSPzyEILAC1Xu6ZhrWDEaTqXw5hQN8X-DdMFJfZYju6u-QVX08bluvP0y3W39fBNfc01D4ge_SgnWpOEajnv2p" alt="" />
 
                     </div>
                 </div>
@@ -369,12 +391,12 @@
                                 </div>
                                 <div class="row">
                                     <table class="table" id="myTable">
-                                        <tr >
-                                            <th >
+                                        <tr>
+                                            <th>
                                                 Patient ID
                                             </th>
 
-                                            <th >
+                                            <th>
                                                 Patient Name
                                             </th>
                                             <th>
@@ -416,10 +438,15 @@
                                 </div>
                             </div>
                         </form>
-
+                        
                         <div class="tab-pane fade" id="appointment" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
-                                <table class="table">
+                                <div class="input-group">
+                                    <input type="search" class="form-control rounded" placeholder="Search Appointment by doctor" aria-label="Search"
+                                           aria-describedby="search-addon" name="searchname" onkeyup="searchappoint()" id="myInput2" />
+
+                                </div>
+                                <table class="table" id="myTable2">
                                     <tr>
                                         <th>
                                             Date
@@ -439,31 +466,31 @@
 
                                     @foreach (var a in Model.Appointment)
                                     {
-                                <tr>
-                                    <td>
-                                        @a.Date.ToShortDateString()
-                                    </td>
-                                    <td>
-                                        @a.User1.Name
-                                    </td>
-                                    <td>
-                                        @a.User.Name
-                                    </td>
-                                    @if (a.Status == 0)
-                                    {
-                                        <td align="right">
-                                            <button class="btn btn-success"><a href="/manageappointments/approve?aid=@a.Id&username=@username" style="color:white">Approve</a></button>
-                                            <button class="btn btn-danger"><a href="/manageappointments/deny?aid=@a.Id&username=@username" style="color:white">Deny</a></button>
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td align="right">
-                                            <button class="btn btn-dark" disabled>Approve</button>
-                                            <button class="btn btn-dark" disabled>Deny</button>
-                                        </td>
-                                    }
-                                </tr>
+                                        <tr>
+                                            <td>
+                                                @a.Date.ToShortDateString()
+                                            </td>
+                                            <td>
+                                                @a.User1.Name
+                                            </td>
+                                            <td>
+                                                @a.User.Name
+                                            </td>
+                                            @if (a.Status == 0)
+                                            {
+                                                <td align="right">
+                                                    <button class="btn btn-success"><a href="/manageappointments/approve?aid=@a.Id&username=@username" style="color:white">Approve</a></button>
+                                                    <button class="btn btn-danger"><a href="/manageappointments/deny?aid=@a.Id&username=@username" style="color:white">Deny</a></button>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td align="right">
+                                                    <button class="btn btn-dark" disabled>Approve</button>
+                                                    <button class="btn btn-dark" disabled>Deny</button>
+                                                </td>
+                                            }
+                                        </tr>
                                     }
 
 

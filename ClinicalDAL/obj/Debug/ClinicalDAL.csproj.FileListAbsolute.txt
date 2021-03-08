@@ -113,17 +113,6 @@ C:\Users\srin3\Desktop\clinical Git\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.c
 C:\Users\srin3\Desktop\clinical Git\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.csproj.CopyComplete
 C:\Users\srin3\Desktop\clinical Git\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.dll
 C:\Users\srin3\Desktop\clinical Git\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.pdb
-C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\ClinicalDAL.dll.config
-C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\ClinicalDAL.dll
-C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\ClinicalDAL.pdb
-C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\EntityFramework.dll
-C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\EntityFramework.xml
-C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.csproj.CoreCompileInputs.cache
-C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.csproj.CopyComplete
-C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.dll
-C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.pdb
 C:\Users\GARGEETRIPATHI\Source\Repos\srin320\Clinical\ClinicalDAL\bin\Debug\ClinicalDAL.dll.config
 C:\Users\GARGEETRIPATHI\Source\Repos\srin320\Clinical\ClinicalDAL\bin\Debug\ClinicalDAL.dll
 C:\Users\GARGEETRIPATHI\Source\Repos\srin320\Clinical\ClinicalDAL\bin\Debug\ClinicalDAL.pdb
@@ -136,3 +125,15 @@ C:\Users\GARGEETRIPATHI\Source\Repos\srin320\Clinical\ClinicalDAL\obj\Debug\Clin
 C:\Users\GARGEETRIPATHI\Source\Repos\srin320\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.csproj.CopyComplete
 C:\Users\GARGEETRIPATHI\Source\Repos\srin320\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.dll
 C:\Users\GARGEETRIPATHI\Source\Repos\srin320\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.pdb
+C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\ClinicalDAL.dll.config
+C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\ClinicalDAL.dll
+C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\ClinicalDAL.pdb
+C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\EntityFramework.dll
+C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\EntityFramework.xml
+C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.csproj.CoreCompileInputs.cache
+C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.csproj.CopyComplete
+C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.dll
+C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.pdb
+C:\Users\VrindaBansal\Documents\gitclinical\Clinical\ClinicalDAL\obj\Debug\ClinicalDAL.csprojAssemblyReference.cache
