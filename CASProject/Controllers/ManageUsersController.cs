@@ -149,7 +149,7 @@ namespace CASProject.Controllers
             }
             else
             {
-                ViewBag.error = "Login failed";
+                
                 return RedirectToAction("Login");
             }
 

@@ -448,7 +448,7 @@
                                             <td>
                                                 @a.Date.ToShortDateString()
                                             </td>
-                                            @if (a.Date.AddDays(7) > DateTime.Now && DateTime.Now.AddDays(7) > a.Date)
+                                            @if (DateTime.Now < a.Date && DateTime.Now > a.Date.AddDays(7))
                                             {
                                                 <td>
                                                     <a href="/managemessages/viewmsgpatient?pid=@a.PatientId&did=@a.DoctorId">Send Message</a>

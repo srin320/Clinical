@@ -14,9 +14,6 @@ namespace CASProject.ViewModel
     public class UserViewModel
     {
 
-
-         
-
         public int UserId { get; set; }
 
 
