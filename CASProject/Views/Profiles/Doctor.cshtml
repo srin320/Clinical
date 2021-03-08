@@ -35,6 +35,7 @@ function myFunction() {
     function redirectOnClick(pid, did) {
         document.location = '/managemessages/sendmsgdoctor?pid=' + pid + '&did=' + did;
     }
+
 </script>
 
    
@@ -173,12 +174,12 @@ function myFunction() {
                     {
                         <div class="form-group">
                             <label for="txtoldpwd" class="col-form-label"> Username</label>
-                            <input type="text" class="form-control" id="txtuname" name="txtuname" value=@item.Username readonly />
+                            <input type="text" class="form-control" id="txtuname" name="txtuname" placeholder=@item.Username readonly />
 
                         </div>
                         <div class="form-group">
                             <label for="txtnewpwd" class="col-form-label">Date Of Birth</label>
-                            <input type="text" class="form-control" id="txtdob" value=@item.DOB readonly>
+                            <input type="text" class="form-control" id="txtdob" placeholder=@item.DOB readonly>
                         </div>
                         <div class="form-group">
                             <label for="txtoldpwd" class="col-form-label">Phone</label>
@@ -202,8 +203,12 @@ function myFunction() {
                             <input type="password" class="form-control" id="txtpwd" name="txtpwd" value=@item.Password>
                         </div>
                     }
-
-            </div>
+                    <div class="form-group">
+                        <label for="txtoldpwd" class="col-form-label"> Confirm Password</label>
+                        <input type="password" class="form-control" id="txtconfpwd" name="txtpwd">
+                    </div>
+</div>
+          
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button class="btn btn--radius-2 btn--green" type="submit" value="save">Update</button>

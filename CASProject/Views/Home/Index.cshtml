@@ -34,14 +34,14 @@
 
                         @if (Session["Myrole"] != null)
                         {
-                            <h1 class="mb-4" style="color:white">Welcome to Medicure, @Session["Myname"] </h1>
+                            <h1 class="mb-4" style="color:black">Welcome to Medicure, @Session["Myname"]! </h1>
                            // <p style="color:black">If You are new here, Please Register and avail the facilities of our website.</p>
                             
                         }
                         else
                         {
 
-                            <h1 class="mb-4 font-weight-bold" style="color:darkcyan">Welcome to Medicure</h1>
+                            <h1 class="mb-4" style="color:black">Welcome to Medicure</h1>
                             <p style="color:black">If You are new here, Please Register and avail the facilities of our website.</p>
                             <button class="btn btn-primary" type="button" style="margin-top:10px">@Html.ActionLink("Register Here!", "Register", "ManageUsers", "/ManageUsers/Register", new { id = "btnLogin", style = "color: white" })</button>
                         }
