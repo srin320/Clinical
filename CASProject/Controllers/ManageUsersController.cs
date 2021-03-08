@@ -16,7 +16,7 @@ namespace CASProject.Controllers
         {
             userRepo = new ClinicalDAL.UserRepository();
             roleRepo = new ClinicalDAL.RoleRepository();
-            mycontext = new ClinicalDAL.EF.ClinicalEntities(); 
+            mycontext = new ClinicalDAL.EF.ClinicalEntities();
         }
 
         [HttpGet]
@@ -43,7 +43,7 @@ namespace CASProject.Controllers
                 ClinicalDAL.EF.Doctor d = new ClinicalDAL.EF.Doctor();
 
                 u.RoleId = usr.RoleId;
-                if (usr.RoleId==1)
+                if (usr.RoleId == 1)
                 {
                     u.Name = usr.Name;
                     u.DOB = Convert.ToDateTime(usr.DOB);
@@ -54,12 +54,12 @@ namespace CASProject.Controllers
                     u.Address = usr.Address;
                     u.Gender = usr.Gender;
                     d.Qualification = usr.Qualification;
-                    
-                    d.RegNo = Convert.ToInt32( usr.RegNo);
+
+                    d.RegNo = Convert.ToInt32(usr.RegNo);
 
                     d.DeptName = Request["Departments"];
                     // d.DeptName = doc.DeptName;
-                    userRepo.AddUser(u,d);
+                    userRepo.AddUser(u, d);
                 }
                 else
                 {
@@ -73,8 +73,8 @@ namespace CASProject.Controllers
                     u.Gender = usr.Gender;
                     userRepo.AddUser(u);
                 }
-                               
-               
+
+
 
                 return RedirectToAction("Login");
 
@@ -87,7 +87,7 @@ namespace CASProject.Controllers
                 roleRepo = new ClinicalDAL.RoleRepository();
                 model.Roles = roleRepo.GetRoles().ToHashSet();
                 return View(model);
-              
+
 
 
             }
@@ -106,35 +106,43 @@ namespace CASProject.Controllers
         public ActionResult Login(ViewModel.UserViewModel usr)
         {
             ClinicalDAL.EF.User u = new ClinicalDAL.EF.User();
-           
+
             string uname = usr.Username;
+
+
             //var obj =userRepo.getpassbyuname(uname);
             bool val = userRepo.checkpass(uname, usr.Password);
-            
+
             //var data = mycontext.Users.Where(s => s.Username.Equals(uname) && s.Password.Equals(pass)).ToList();
-            if(val)
+            if (val)
             {
+                Session["Myuser"] = uname;
                 int rid = userRepo.getRoleId(uname);
-                
-                if(rid==1)
+                Session["Myrole"] = rid.ToString();
+
+                if (rid == 1)
                 {
+                    //Session["Myrole"] = rid;
                     //return RedirectToAction("/Profiles/Doctor");
-                    return RedirectToAction("Doctor", "Profiles" , new { username=uname});
+                    return RedirectToAction("Doctor", "Profiles", new { username = uname });
                 }
-                else if(rid==2)
+                else if (rid == 2)
                 {
+                    //Session["Myrole"] = rid;
                     return RedirectToAction("Patient", "Profiles", new { username = uname });
                 }
                 else if (rid == 3)
                 {
+                    // Session["Myrole"] = rid;
                     return RedirectToAction("FrontOfficeMember", "Profiles", new { username = uname });
                 }
-                else  
+                else
                 {
+                    // Session["Myrole"] = rid;
                     return RedirectToAction("Pharmacist", "Profiles", new { username = uname });
                 }
 
-   
+
 
             }
             else
@@ -145,10 +153,18 @@ namespace CASProject.Controllers
 
 
         }
-      
+        [HttpGet]
+        public ActionResult Logout(ViewModel.UserViewModel usr)
+        {
 
 
 
+            Session["MyUser"] = null;
+            Session["Myrole"] = null;
+            return RedirectToAction("index","home");
+
+
+        }
     }
 }
 

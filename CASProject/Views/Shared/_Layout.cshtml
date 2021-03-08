@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="top-wrap d-flex">
+                            @*<div class="top-wrap d-flex">
                                 <div>
                                     <a onclick="location.href = '@Url.Action("UserProfile","Home")'" style="cursor: pointer;">
                                         <img style="cursor:pointer" width="40" height="49" src="~/images/account.svg" />
@@ -81,7 +81,7 @@
                                    
                                     <h5>Profile</h5>
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                         <div class="col">
                             <div class="top-wrap d-flex">
@@ -106,31 +106,28 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-link" style="padding-top:10px;color:white"> @Html.ActionLink("HOME", "Index", "Home", "/Home/Index", new { id = "OT", style = "color: white" }) </li>
-                    <li class="nav-link" style="padding-top:10px;color:white"> @Html.ActionLink("OUR DOCTORS", "OurDoctors", "Home", "/Home/OurDoctors", new { id = "OT", style = "color: white" }) </li>
-                    @if (Convert.ToInt32(Session["RoleId"]) == 2)
-                    {
-                        <li class="nav-link" style="padding-top:10px;color:white"> @Html.ActionLink("SUPPLIERS", "Suppliers", "Home", "/Home/OurDoctors", new { id = "OT", style = "color: white" }) </li>
-                    }
-                    <li class="nav-link" style="padding-top:10px;color:white"> @Html.ActionLink("DRUGS", "Drug", "Home", "/Home/Drug", new { id = "OT", style = "color: white" }) </li>
-                    <li class="nav-link" style="padding-top:10px;color:white"> @Html.ActionLink("TEAM", "Team", "Home", "/Home/Team", new { id = "OT", style = "color: white" }) </li>
-                    <li class="nav-link" style="padding-top:10px;color:white"> @Html.ActionLink("CONTACT", "Contact", "Home", "/Home/Contact", new { id = "OT", style = "color: white" })</li>
+                    <li class="nav-link" style="padding-top:10px;color:white"> @Html.ActionLink("OUR DOCTORS", "Index", "Home", "/Home/Index", new { id = "OT", style = "color: white" }) </li>
+                   
+                    <li class="nav-link" style="padding-top:10px;color:white">@Html.ActionLink("VIEW MEDICINE", "Index", "Home", "/Home/Index", new { id = "OT", style = "color: white" }) </li>
+                    @*<li class="nav-link" style="padding-top:10px;color:white"> @Html.ActionLink("TEAM", "Team", "Home", "/Home/Team", new { id = "OT", style = "color: white" }) </li>*@
+                    <li class="nav-link" style="padding-top:10px;color:white"> @Html.ActionLink("CONTACT US", "Index", "Home", "/Home/Index", new { id = "OT", style = "color: white" })</li>
                     @*<li> <img src="~/images/profileIcon.png" id="imgProfile" width="52" height="52" hidden/></li>*@
                 </ul>
-                @if (Request.IsAuthenticated)
-                {
-                    <h2 style="color:white; font-weight:bold;margin-right:10px;">Hi, @HttpContext.Current.User.Identity.Name</h2>
-
+                
+                   @if (Session["Myrole"] != null)
+                   {
                     <div class="order-lg-last">
-                        <button class="btn btn-primary" type="button"> @Html.ActionLink("SignOff", "Logout", "Account", "/Home/Index", new { id = "btnLogout", style = "color: white" })</button>
+                        <button class="btn btn-primary" type="button"> @Html.ActionLink("Log Out", "Logout", "manageusers", "/home/index", new { id = "btnLogout", style = "color: white" })</button>
                     </div>
-                }
-                else
-                {
+                   }
+                   else
+                   {
+
                     <div class="order-lg-last">
                         @*<h2 class="btn btn-primary" type="button" data-bs-toggle="modal">@Html.ActionLink("login or sign up", "exampleModal", "Home", new { id = "OT", style = "color: white" })</h2>*@
                         <button class="btn btn-primary" type="button">@Html.ActionLink("Login Or Sign Up", "Login", "manageusers", "/manageusers/Login", new { id = "btnLogin", style = "color: white" })</button>
                     </div>
-                }
+                   }
             </div>
         </div>
     </nav>

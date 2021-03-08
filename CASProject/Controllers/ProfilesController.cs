@@ -28,25 +28,33 @@ namespace CASProject.Controllers
 
         public ActionResult Doctor(ViewModel.UserViewModel usr)
         {
-            ViewModel.UserViewModel model = new ViewModel.UserViewModel();
-            var uname = Request.QueryString["username"];
-            var users = userRepo.GetDoctor(uname);
-            var med = userRepo.GetMedicine().ToList();
-            
-            var did = userRepo.getuserbyuname(uname);
+            if ((Session["Myuser"]!=null) && (Session["Myrole"].Equals("1")))
+            {
+                ViewModel.UserViewModel model = new ViewModel.UserViewModel();
+                var uname = Request.QueryString["username"];
+                var users = userRepo.GetDoctor(uname);
+                var med = userRepo.GetMedicine().ToList();
 
-            var appointments = appointmentRepo.GetAppointmentsForDoctor(did.Id);
-            var msgs = msgRepo.GetLatestMsgForDoctor(did.Id);
+                var did = userRepo.getuserbyuname(uname);
 
-            dynamic mymodel = new ExpandoObject();
+                var appointments = appointmentRepo.GetAppointmentsForDoctor(did.Id);
+                var msgs = msgRepo.GetLatestMsgForDoctor(did.Id);
 
-            mymodel.Medicine = med;
-            mymodel.Doctor = users;
-            mymodel.Appointment = appointments;
-            mymodel.Message = msgs;
+                dynamic mymodel = new ExpandoObject();
 
-            return View(mymodel);
+                mymodel.Medicine = med;
+                mymodel.Doctor = users;
+                mymodel.Appointment = appointments;
+                mymodel.Message = msgs;
 
+                return View(mymodel);
+            }
+            else
+            {
+                Session["MyUser"] = null;
+                Session["Myrole"] = null;
+                return RedirectToAction("Login", "ManageUsers");
+            }
 
         }
 
@@ -108,27 +116,35 @@ namespace CASProject.Controllers
             [HttpGet]
             public ActionResult Patient(ViewModel.UserViewModel usr)
         {
-            ViewModel.UserViewModel model = new ViewModel.UserViewModel();
-            var uname = Request.QueryString["username"];
-            var users = userRepo.GetProfiles(uname);
+            if (Session["Myuser"] != null && (Session["Myrole"].Equals("2")))
+            {
+                ViewModel.UserViewModel model = new ViewModel.UserViewModel();
+                var uname = Request.QueryString["username"];
+                var users = userRepo.GetProfiles(uname);
 
-            var pid = userRepo.getuserbyuname(uname);
+                var pid = userRepo.getuserbyuname(uname);
 
-            var appointments = appointmentRepo.GetAppointmentsForPatient(pid.Id);
-            //var dlist = userRepo.GetDoctorByDept(Request["Departments"]);
+                var appointments = appointmentRepo.GetAppointmentsForPatient(pid.Id);
+                //var dlist = userRepo.GetDoctorByDept(Request["Departments"]);
 
-            // var dusers = userRepo.GetDoctor(uname);
-            var med = userRepo.GetMedicine().ToList();
+                // var dusers = userRepo.GetDoctor(uname);
+                var med = userRepo.GetMedicine().ToList();
 
-            dynamic mymodel = new ExpandoObject();
+                dynamic mymodel = new ExpandoObject();
 
-            mymodel.Medicine = med;
-            mymodel.User = users;
-            mymodel.Appointment = appointments;
+                mymodel.Medicine = med;
+                mymodel.User = users;
+                mymodel.Appointment = appointments;
 
-            return View(mymodel);
+                return View(mymodel);
 
-         
+            }
+            else
+            {
+                Session["MyUser"] = null;
+                Session["Myrole"] = null;
+                return  RedirectToAction("login", "manageusers");
+            }
 
              
 
@@ -172,41 +188,62 @@ namespace CASProject.Controllers
         }
 
 
-            public ActionResult Pharmacist(ViewModel.UserViewModel usr)
+        public ActionResult Pharmacist(ViewModel.UserViewModel usr)
+        {
+            if (Session["Myuser"] != null && (Session["Myrole"].Equals("3")))
             {
-            ViewModel.UserViewModel model = new ViewModel.UserViewModel();
-            var uname = Request.QueryString["username"];
-            var users = userRepo.GetProfiles(uname);
 
-            
-            var med = userRepo.GetMedicine().ToList();
+                ViewModel.UserViewModel model = new ViewModel.UserViewModel();
+                var uname = Request.QueryString["username"];
+                var users = userRepo.GetProfiles(uname);
 
-            dynamic mymodel = new ExpandoObject();
 
-            mymodel.Medicine = med;
-            mymodel.User = users;
-           // mymodel.Appointment = appointments;
+                var med = userRepo.GetMedicine().ToList();
 
-            return View(mymodel);
+                dynamic mymodel = new ExpandoObject();
 
+                mymodel.Medicine = med;
+                mymodel.User = users;
+                // mymodel.Appointment = appointments;
+
+                return View(mymodel);
+            }
+            else
+            {
+                Session["Myuser"] = null;
+                Session["Myrole"] = null;
+                return  RedirectToAction("login", "manageusers");
+            }
         }
+
+
+        
         public ActionResult FrontOfficeMember(ViewModel.UserViewModel usr)
         {
-            ViewModel.UserViewModel model = new ViewModel.UserViewModel();
-            var uname = Request.QueryString["username"];
-            var users = userRepo.GetProfiles(uname);
-            var appointments = appointmentRepo.GetAppointmentsForFrontOffice();
-            var pusers = userRepo.GetPatients();
+            if (Session["Myuser"] != null && (Session["Myrole"].Equals("4")))
+            {
+                ViewModel.UserViewModel model = new ViewModel.UserViewModel();
+                var uname = Request.QueryString["username"];
+                var users = userRepo.GetProfiles(uname);
+                var appointments = appointmentRepo.GetAppointmentsForFrontOffice();
+                var pusers = userRepo.GetPatients();
 
-            dynamic mymodel = new ExpandoObject();
+                dynamic mymodel = new ExpandoObject();
 
-           
-            mymodel.User = users;
-            mymodel.Patient = pusers;
-            mymodel.Appointment = appointments;
-            
 
-            return View(mymodel);
+                mymodel.User = users;
+                mymodel.Patient = pusers;
+                mymodel.Appointment = appointments;
+
+
+                return View(mymodel);
+            }
+            else
+            {
+                Session["MyUser"] = null;
+                Session["Myrole"] = null;
+                return RedirectToAction("login", "manageusers");
+            }
         }
 
     }
