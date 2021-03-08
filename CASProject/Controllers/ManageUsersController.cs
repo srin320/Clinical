@@ -108,7 +108,8 @@ namespace CASProject.Controllers
             ClinicalDAL.EF.User u = new ClinicalDAL.EF.User();
 
             string uname = usr.Username;
-
+            var user = userRepo.GetProfiles(uname).FirstOrDefault();
+            
 
             //var obj =userRepo.getpassbyuname(uname);
             bool val = userRepo.checkpass(uname, usr.Password);
@@ -116,6 +117,7 @@ namespace CASProject.Controllers
             //var data = mycontext.Users.Where(s => s.Username.Equals(uname) && s.Password.Equals(pass)).ToList();
             if (val)
             {
+                Session["Myname"] = user.Name;
                 Session["Myuser"] = uname;
                 int rid = userRepo.getRoleId(uname);
                 Session["Myrole"] = rid.ToString();

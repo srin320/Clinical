@@ -22,17 +22,29 @@
     <link rel="stylesheet" href="~/css/style.css">*@
 
 <div class="container">
-    <div class="img" style="background-image: url(../images/indexbg.jpg);width:1080px;height:700px;opacity:0.60">
+    <div class="img" style="  background-image: url(https://www.sdglobaltech.com/wp-content/uploads/2017/01/The-Must-Have-modules-of-a-Hospital-Management-System-1200x675.jpg);
+        width: 1080px;
+        height: 700px;
+        opacity: 0.60">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-end">
                 <div class="col-md-6 ftco-animate">
                     <div class="text w-100" style="margin-top:100px">
-                        <div></div>
-                        <h1 class="mb-4" style="color:white">Welcome to Medicure</h1>
-                        <p style="color:black">If You are new here, Please Register and avail the facilities of our website.</p>
-                        <button class="btn btn-primary" type="button" style="margin-top:10px">@Html.ActionLink("Register Here!", "Register", "ManageUsers", "/ManageUsers/Register", new { id = "btnLogin", style = "color: white" })</button>
-                        <div></div>
+
+                        @if (Session["Myrole"] != null)
+                        {
+                            <h1 class="mb-4" style="color:white">Welcome to Medicure, @Session["Myname"] </h1>
+                           // <p style="color:black">If You are new here, Please Register and avail the facilities of our website.</p>
+                            
+                        }
+                        else
+                        {
+
+                            <h1 class="mb-4 font-weight-bold" style="color:darkcyan">Welcome to Medicure</h1>
+                            <p style="color:black">If You are new here, Please Register and avail the facilities of our website.</p>
+                            <button class="btn btn-primary" type="button" style="margin-top:10px">@Html.ActionLink("Register Here!", "Register", "ManageUsers", "/ManageUsers/Register", new { id = "btnLogin", style = "color: white" })</button>
+                        }
                     </div>
                 </div>
             </div>

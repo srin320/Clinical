@@ -18,7 +18,7 @@ namespace CASProject
             //Session["UserId"] = 111;
             Session["Myuser"] = null;
             Session["Myrole"] = null;
-
+            Session["Myname"] = null;
 
             /*int app = 0;
             Application.Lock();

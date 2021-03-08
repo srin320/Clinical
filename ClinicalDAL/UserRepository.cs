@@ -225,16 +225,7 @@ namespace ClinicalDAL
                     
                                          select usr;
 
-            //List<EF.User> query=new List<User>();
-            //foreach (var item in did)
-            //{
-            //    var q = from usr in mycontext.Users                                          
-            //     where usr.Id == item
-            //    select usr;
-
-            //    query.Add(q.FirstOrDefault());
-
-           // }
+            
 
             return did.ToList();
         }

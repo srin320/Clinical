@@ -190,7 +190,7 @@ namespace CASProject.Controllers
 
         public ActionResult Pharmacist(ViewModel.UserViewModel usr)
         {
-            if (Session["Myuser"] != null && (Session["Myrole"].Equals("3")))
+            if (Session["Myuser"] != null && (Session["Myrole"].Equals("4")))
             {
 
                 ViewModel.UserViewModel model = new ViewModel.UserViewModel();
@@ -220,7 +220,7 @@ namespace CASProject.Controllers
         
         public ActionResult FrontOfficeMember(ViewModel.UserViewModel usr)
         {
-            if (Session["Myuser"] != null && (Session["Myrole"].Equals("4")))
+            if (Session["Myuser"] != null && (Session["Myrole"].Equals("3")))
             {
                 ViewModel.UserViewModel model = new ViewModel.UserViewModel();
                 var uname = Request.QueryString["username"];
