@@ -149,8 +149,9 @@ namespace CASProject.Controllers
             }
             else
             {
-                
-                return RedirectToAction("Login");
+                ViewBag.Message = "Wrong Password Or Username ! Try Again";
+                return View();
+                //   return RedirectToAction("Login");
             }
 
 

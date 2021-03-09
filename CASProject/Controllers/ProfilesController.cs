@@ -238,12 +238,8 @@ namespace CASProject.Controllers
                 string Address = Request["txtadd"];
                 string Password = Request["txtpwd"];
                 var pid = userRepo.getuserbyuname(username);
-                userRepo.UpdateProfile(username, Phone, Address, Password);
-
-                
-                
+                userRepo.UpdateProfile(username, Phone, Address, Password);                
                 var users = userRepo.GetProfiles(username);
-
                 var med = userRepo.GetMedicine().ToList();
 
                 dynamic mymodel = new ExpandoObject();

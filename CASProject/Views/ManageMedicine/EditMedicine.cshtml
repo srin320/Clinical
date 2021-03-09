@@ -15,9 +15,9 @@
     <form method="POST" action="/managemedicine/editmedicine">
         <div class="form-group">
             <label for="txtoldpwd" class="col-form-label">Name</label>
-            <input type="text" class="form-control" id="txtid" name="txtid" placeholder=@Model.Id readonly hidden />
-            <input type="text" class="form-control" id="txtuname" name="txtuname" placeholder=@Request.QueryString["username"] readonly hidden />
-            <input type="text" class="form-control" id="txtname" name="txtname" placeholder=@Model.Name readonly />
+            <input type="text" class="form-control" id="txtid" name="txtid" value=@Model.Id readonly hidden />
+            <input type="text" class="form-control" id="txtuname" name="txtuname" value=@Request.QueryString["username"] readonly hidden />
+            <input type="text" class="form-control-plaintext" id="txtname" name="txtname" value=@Model.Name readonly />
 
         </div>
         <div class="form-group">
@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
             <label for="txtoldpwd" class="col-form-label">Expiry Date</label>
-            <input type="text" class="form-control" id="txtexp" name="txtexp" placeholder=@Model.ExpDate readonly>
+            <input type="text" class="form-control-plaintext" id="txtexp" name="txtexp" value=@Model.ExpDate readonly>
         </div>
 
         <div class="form-group">
